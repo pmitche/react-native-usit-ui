@@ -7,7 +7,7 @@
 ```js
 ...
 import { Dimensions, View } from 'react-native';
-import { Button } from 'react-native-material-ui';
+import { Button } from 'react-native-usit-ui';
 
 const { width } = Dimensions.get('window')
 
