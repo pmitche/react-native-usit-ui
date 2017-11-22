@@ -1,0 +1,21 @@
+{
+  "name": "react-native-usit-ui",
+  "version": "0.0.0",
+  "description": "Collection of user interface components",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "ssh://git@bitbucket.usit.uio.no:7999/mob/react-native-usit-ui.git"
+  },
+  "keywords": [
+    "ui",
+    "react-native",
+    "usit",
+    "design"
+  ],
+  "author": "USIT",
+  "license": "MIT"
+}

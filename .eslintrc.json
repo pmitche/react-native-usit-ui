@@ -1,0 +1,43 @@
+{
+  "parser": "babel-eslint",
+  "extends": [
+    "eslint:recommended",
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "plugin:jest/recommended",
+    "plugin:flowtype/recommended",
+    "plugin:react/recommended",
+    "plugin:jsx-a11y/recommended",
+    "prettier",
+    "prettier/flowtype",
+    "prettier/react"
+  ],
+  "plugins": ["jest", "flowtype", "flowtype-errors", "react", "jsx-a11y"],
+  "env": {
+    "browser": false,
+    "es6": true,
+    "node": true,
+    "jest/globals": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "globals": {
+    "Generator": true,
+    "Class": true,
+    "__DEV__": true
+  },
+  "rules": {
+    "flowtype-errors/show-errors": 2,
+    "flowtype/no-types-missing-file-annotation": 1,
+    "flowtype-errors/enforce-min-coverage": [1, 50],
+    "no-underscore-dangle": 0,
+    "no-unused-vars": 1,
+    "no-console": 1
+  }
+}
+
