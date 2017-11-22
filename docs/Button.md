@@ -1,5 +1,7 @@
 # [Button]
 
+![Screenshot of button](./screenshots/button.png)
+
 ### Usage
 
 ```js
