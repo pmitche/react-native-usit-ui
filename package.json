@@ -6,6 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "peerDependencies": {
+    "react-native-vector-icons": "^4.4.2"
+  },
   "repository": {
     "type": "bitbucket",
     "url": "ssh://git@bitbucket.usit.uio.no:7999/mob/react-native-usit-ui.git"
@@ -26,7 +29,8 @@
     "jest": "^21.2.1",
     "prettier": "^1.8.2",
     "react": "16.0.0-beta.5",
-    "react-native": "^0.49.5"
+    "react-native": "^0.49.5",
+    "react-native-vector-icons": "^4.4.2"
   },
   "keywords": [
     "ui",
@@ -35,8 +39,5 @@
     "design"
   ],
   "author": "USIT",
-  "license": "MIT",
-  "dependencies": {
-    "react-native-vector-icons": "^4.4.2"
-  }
+  "license": "MIT"
 }
