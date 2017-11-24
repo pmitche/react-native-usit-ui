@@ -5,36 +5,31 @@ import ListElement from '../ListElement';
 
 type Props = {
   items: Array<Object>,
-  onChange: (result: Array<any>) => void,
+  onChange: (id: number | string) => void,
   color?: string,
   icons?: { checked: React.Component<*>, unchecked: React.Component<*> },
 };
 
 type States = {
-  multiple: Array<number | string>,
+  selected: ?(number | string),
 };
 
-class MultipleOptionList extends React.Component<Props, States> {
+class SingleOptionList extends React.Component<Props, States> {
   constructor(props: Props) {
     super(props);
     this.state = {
-      multiple: [],
+      selected: undefined,
     };
   }
 
   onSelect(id: number | string) {
-    if (this.state.multiple.includes(id)) {
-      const removed = this.state.multiple.filter(value => value !== id);
-      this.setState({ multiple: removed });
-      this.props.onChange(removed);
-    } else {
-      const selected = [...this.state.multiple, id];
-      this.setState({ multiple: selected });
-      this.props.onChange(selected);
-    }
+    this.setState({ selected: id });
+    this.props.onChange(id);
   }
+
   render() {
     const { color, icons, items } = this.props;
+
     return (
       <ScrollView
         style={{ flex: 1 }}
@@ -47,10 +42,10 @@ class MultipleOptionList extends React.Component<Props, States> {
           <ListElement
             key={element.id}
             text={element.text}
-            type="multiple"
+            type="single"
             icons={icons}
             color={color}
-            selected={this.state.multiple.includes(element.id)}
+            selected={this.state.selected === element.id}
             subText={element.subText}
             onPress={() => this.onSelect(element.id)}
           />
@@ -60,4 +55,4 @@ class MultipleOptionList extends React.Component<Props, States> {
   }
 }
 
-export default MultipleOptionList;
+export default SingleOptionList;
