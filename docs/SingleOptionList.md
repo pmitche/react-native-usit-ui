@@ -28,6 +28,7 @@ const data = [
 ];
 
 const icons = {
+  // Icons from react-native-vector-icons could also be used in the same pattern
   checked: (
     <Image
       source={require('./checkedbox.png')}
