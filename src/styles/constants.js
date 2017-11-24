@@ -1,7 +1,7 @@
 // @flow
 import { Dimensions } from 'react-native';
 
-const { height, width } = Dimensions.get('window');
+const { height } = Dimensions.get('window');
 
 export default {
   buttonHeight: height * 0.09,
