@@ -66,9 +66,15 @@ const icons = {
 ### API
 
 ```js
+type ListItem = {
+  id: string,
+  text: string,
+  subText?: string,
+};
+
 type Props = {
-  items: Array<Object>,
-  onChange: (result: Array<any>) => void,
+  items: Array<ListItem>,
+  onChange: (result: string | number) => void,
   color?: string, //default is #2294A8
   icons?: { checked: React.Component<*>, unchecked: React.Component<*> },
 };

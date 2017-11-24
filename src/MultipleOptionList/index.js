@@ -2,10 +2,11 @@
 import React from 'react';
 import { ScrollView } from 'react-native';
 import ListElement from '../ListElement';
+import type { ListItem } from '../ListElement';
 
 type Props = {
-  items: Array<Object>,
-  onChange: (result: Array<any>) => void,
+  items: Array<ListItem>,
+  onChange: (result: Array<string | number>) => void,
   color?: string,
   icons?: { checked: React.Component<*>, unchecked: React.Component<*> },
 };
@@ -46,12 +47,11 @@ class MultipleOptionList extends React.Component<Props, States> {
         {items.map(element => (
           <ListElement
             key={element.id}
-            text={element.text}
+            item={element}
             type="multiple"
             icons={icons}
             color={color}
             selected={this.state.multiple.includes(element.id)}
-            subText={element.subText}
             onPress={() => this.onSelect(element.id)}
           />
         ))}

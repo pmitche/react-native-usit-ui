@@ -15,13 +15,18 @@ const { height, width } = Dimensions.get('window');
 const midValue = width / height;
 const rowHeight = height * 0.08;
 
-type Props = {
+export type ListItem = {
+  id: string,
   text: string,
+  subText?: string,
+};
+
+type Props = {
+  item: ListItem,
   selected: boolean,
   onPress: () => void,
   type: 'single' | 'multiple',
   icons?: { checked: React.Component<*>, unchecked: React.Component<*> },
-  subText?: string,
   color: ?string,
 };
 
@@ -59,7 +64,7 @@ class ListElement extends React.Component<Props> {
   }
 
   render() {
-    const { text, color, selected, subText, onPress } = this.props;
+    const { color, item, selected, onPress } = this.props;
     // The color design of the rows is based on opacity, so HEX values is used
     const selectedColor = color && `${color}33`;
     const unselectedColor = color && `${color}10`;
@@ -71,7 +76,7 @@ class ListElement extends React.Component<Props> {
         style={[
           styles.row,
           {
-            height: subText ? undefined : rowHeight,
+            height: item.subText ? undefined : rowHeight,
             backgroundColor: selected ? selectedColor : unselectedColor,
           },
         ]}
@@ -84,15 +89,15 @@ class ListElement extends React.Component<Props> {
                 fontSize: midValue * 36,
               }}
             >
-              {text}
+              {item.text}
             </Text>
           </View>
         </View>
-        {subText && (
+        {item.subText && (
           <View style={{ flexDirection: 'row', marginBottom: 18 }}>
             <View style={{ flex: 0.157 }} />
             <View style={{ flex: 0.83 }}>
-              <Text style={{ fontSize: midValue * 27 }}>{subText}</Text>
+              <Text style={{ fontSize: midValue * 27 }}>{item.subText}</Text>
             </View>
           </View>
         )}

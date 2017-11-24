@@ -3,8 +3,10 @@ import React from 'react';
 import { ScrollView } from 'react-native';
 import ListElement from '../ListElement';
 
+import type { ListItem } from '../ListElement';
+
 type Props = {
-  items: Array<Object>,
+  items: Array<ListItem>,
   onChange: (id: number | string) => void,
   color?: string,
   icons?: { checked: React.Component<*>, unchecked: React.Component<*> },
@@ -41,12 +43,11 @@ class SingleOptionList extends React.Component<Props, States> {
         {items.map(element => (
           <ListElement
             key={element.id}
-            text={element.text}
+            item={element}
             type="single"
             icons={icons}
             color={color}
             selected={this.state.selected === element.id}
-            subText={element.subText}
             onPress={() => this.onSelect(element.id)}
           />
         ))}
