@@ -48,7 +48,7 @@ class MultipleOptionList extends React.Component<Props, States> {
           <ListElement
             key={element.id}
             item={element}
-            type="multiple"
+            type="checkbox"
             icons={icons}
             color={color}
             selected={this.state.multiple.includes(element.id)}

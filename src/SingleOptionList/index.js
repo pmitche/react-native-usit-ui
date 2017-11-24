@@ -44,7 +44,7 @@ class SingleOptionList extends React.Component<Props, States> {
           <ListElement
             key={element.id}
             item={element}
-            type="single"
+            type="radio"
             icons={icons}
             color={color}
             selected={this.state.selected === element.id}

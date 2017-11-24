@@ -25,7 +25,7 @@ type Props = {
   item: ListItem,
   selected: boolean,
   onPress: () => void,
-  type: 'single' | 'multiple',
+  type: 'radio' | 'checkbox',
   icons?: { checked: React.Component<*>, unchecked: React.Component<*> },
   color: ?string,
 };
@@ -48,15 +48,15 @@ class ListElement extends React.Component<Props> {
       }
     } else {
       if (this.props.selected) {
-        if (this.props.type === 'single') {
+        if (this.props.type === 'radio') {
           return defaultIcons.radio.checked;
-        } else if (this.props.type === 'multiple') {
+        } else if (this.props.type === 'checkbox') {
           return defaultIcons.checkbox.checked;
         }
       } else {
-        if (this.props.type === 'single') {
+        if (this.props.type === 'radio') {
           return defaultIcons.radio.unchecked;
-        } else if (this.props.type === 'multiple') {
+        } else if (this.props.type === 'checkbox') {
           return defaultIcons.checkbox.unchecked;
         }
       }
