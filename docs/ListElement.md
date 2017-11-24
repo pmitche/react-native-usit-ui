@@ -39,26 +39,29 @@ const icons = {
         }}
       >
         <ListElement
-          text="Something"
+          item={{ id: 'dljf23flsd', text: 'Something' }}
           type="single"
           selected={true}
           onPress={event => console.log(event)}
         />
         <ListElement
-          text="Something"
+          item={{
+            id: 'dljf23flsd',
+            text: 'Something',
+            subText: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+            }}
           type="single"
-          subText="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
           selected={false}
           onPress={event => console.log(event)}
         />
         <ListElement
-          text="Something"
+          item={{ id: 'a', text: 'Something' }}
           type="multiple"
           selected={true}
           onPress={event => console.log(event)}
         />
         <ListElement
-          text="Something"
+          item={{ id: 'abc', text: 'Something' }}
           type="multiple"
           selected={false}
           onPress={event => console.log(event)}
@@ -71,13 +74,18 @@ const icons = {
 ### API
 
 ```js
-type Props = {
+type ListItem = {
+  id: string,
   text: string,
+  subText?: string,
+};
+
+type Props = {
+  item: ListElement,
   selected: boolean,
   onPress: () => void,
   type: 'single' | 'multiple',
   icons?: { checked: React.Component<*>, unchecked: React.Component<*> },
-  subText?: string,
   color: ?string,
 };
 ```
