@@ -28,26 +28,28 @@ type Props = {
   icons?: { checked: React.Component<*>, unchecked: React.Component<*> },
 };
 
-type States = {
-  multiple: Array<number | string>,
+type State = {
+  selected: Array<number | string>,
 };
 
-class MultipleOptionList extends React.Component<Props, States> {
+class MultipleOptionList extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
-      multiple: [],
+      selected: [],
     };
   }
 
   onSelect(id: number | string) {
-    if (this.state.multiple.includes(id)) {
-      const removed = this.state.multiple.filter(value => value !== id);
-      this.setState({ multiple: removed });
-      this.props.onChange(removed);
+    if (this.state.selected.includes(id)) {
+      const selectedAfterRemove = this.state.selected.filter(
+        value => value !== id,
+      );
+      this.setState({ selected: selectedAfterRemove });
+      this.props.onChange(selectedAfterRemove);
     } else {
-      const selected = [...this.state.multiple, id];
-      this.setState({ multiple: selected });
+      const selected = [...this.state.selected, id];
+      this.setState({ selected: selected });
       this.props.onChange(selected);
     }
   }
@@ -67,7 +69,7 @@ class MultipleOptionList extends React.Component<Props, States> {
             item={element}
             icons={icons ? icons : defaultIcons}
             color={color}
-            selected={this.state.multiple.includes(element.id)}
+            selected={this.state.selected.includes(element.id)}
             onPress={() => this.onSelect(element.id)}
           />
         ))}
