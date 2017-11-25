@@ -41,18 +41,14 @@ class MultipleOptionList extends React.Component<Props, State> {
   }
 
   onSelect(id: number | string) {
-    if (this.state.selected.includes(id)) {
-      const selectedAfterRemove = this.state.selected.filter(
-        value => value !== id,
-      );
-      this.setState({ selected: selectedAfterRemove });
-      this.props.onChange(selectedAfterRemove);
-    } else {
-      const selected = [...this.state.selected, id];
-      this.setState({ selected: selected });
-      this.props.onChange(selected);
-    }
+    const updatedSelected = this.state.selected.includes(id)
+      ? this.state.selected.filter(value => value !== id)
+      : [...this.state.selected, id];
+
+    this.setState({ selected: updatedSelected });
+    this.props.onChange(updatedSelected);
   }
+
   render() {
     const { color, icons, items } = this.props;
     return (
