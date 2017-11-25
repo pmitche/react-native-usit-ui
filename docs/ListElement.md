@@ -40,7 +40,7 @@ const icons = {
       >
         <ListElement
           item={{ id: 'dljf23flsd', text: 'Something' }}
-          type="radio"
+          icons={icons}
           selected={true}
           onPress={event => console.log(event)}
         />
@@ -50,19 +50,19 @@ const icons = {
             text: 'Something',
             subText: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
             }}
-          type="radio"
+          icons={icons}
           selected={false}
           onPress={event => console.log(event)}
         />
         <ListElement
           item={{ id: 'a', text: 'Something' }}
-          type="checkbox"
+          icons={icons}
           selected={true}
           onPress={event => console.log(event)}
         />
         <ListElement
           item={{ id: 'abc', text: 'Something' }}
-          type="checkbox"
+          icons={icons}
           selected={false}
           onPress={event => console.log(event)}
         />
@@ -84,8 +84,7 @@ type Props = {
   item: ListElement,
   selected: boolean,
   onPress: () => void,
-  type: 'radio' | 'checkbox',
-  icons?: { checked: React.Component<*>, unchecked: React.Component<*> },
+  icons: { checked: React.Component<*>, unchecked: React.Component<*> },
   color: ?string,
 };
 ```

@@ -1,8 +1,25 @@
 // @flow
 import React from 'react';
-import { ScrollView } from 'react-native';
+import { Image, ScrollView } from 'react-native';
 import ListElement from '../ListElement';
-import type { ListItem } from '../ListElement';
+import { midValue } from '../styles/constants';
+
+import type { ListItem } from '../ListElement/ListElement';
+
+const defaultIcons = {
+  checked: (
+    <Image
+      source={require('./checkedbox.png')}
+      style={{ height: midValue * 36, width: midValue * 36 }}
+    />
+  ),
+  unchecked: (
+    <Image
+      source={require('./uncheckedbox.png')}
+      style={{ height: midValue * 36, width: midValue * 36 }}
+    />
+  ),
+};
 
 type Props = {
   items: Array<ListItem>,
@@ -48,8 +65,7 @@ class MultipleOptionList extends React.Component<Props, States> {
           <ListElement
             key={element.id}
             item={element}
-            type="checkbox"
-            icons={icons}
+            icons={icons ? icons : defaultIcons}
             color={color}
             selected={this.state.multiple.includes(element.id)}
             onPress={() => this.onSelect(element.id)}

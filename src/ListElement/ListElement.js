@@ -25,8 +25,7 @@ type Props = {
   item: ListItem,
   selected: boolean,
   onPress: () => void,
-  type: 'radio' | 'checkbox',
-  icons?: { checked: React.Component<*>, unchecked: React.Component<*> },
+  icons: { checked: React.Component<*>, unchecked: React.Component<*> },
   color: ?string,
 };
 
@@ -39,32 +38,8 @@ class ListElement extends React.Component<Props> {
     return this.props.selected !== nextProps.selected;
   }
 
-  renderIcons() {
-    if (this.props.icons) {
-      if (this.props.selected) {
-        return this.props.icons.checked;
-      } else {
-        return this.props.icons.unchecked;
-      }
-    } else {
-      if (this.props.selected) {
-        if (this.props.type === 'radio') {
-          return defaultIcons.radio.checked;
-        } else if (this.props.type === 'checkbox') {
-          return defaultIcons.checkbox.checked;
-        }
-      } else {
-        if (this.props.type === 'radio') {
-          return defaultIcons.radio.unchecked;
-        } else if (this.props.type === 'checkbox') {
-          return defaultIcons.checkbox.unchecked;
-        }
-      }
-    }
-  }
-
   render() {
-    const { color, item, selected, onPress } = this.props;
+    const { color, item, icons, selected, onPress } = this.props;
     // The color design of the rows is based on opacity, so HEX values is used
     const selectedColor = color && `${color}33`;
     const unselectedColor = color && `${color}10`;
@@ -82,7 +57,9 @@ class ListElement extends React.Component<Props> {
         ]}
       >
         <View style={{ flexDirection: 'row' }}>
-          <View style={styles.iconContainer}>{this.renderIcons()}</View>
+          <View style={styles.iconContainer}>
+            {selected ? icons.checked : icons.unchecked}
+          </View>
           <View style={styles.text}>
             <Text
               style={{
@@ -118,34 +95,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  image: {
-    height: midValue * 36,
-    width: midValue * 36,
-  },
   text: {
     height: rowHeight,
     width: width * 0.75,
     justifyContent: 'center',
   },
 });
-
-const defaultIcons = {
-  checkbox: {
-    checked: (
-      <Image source={require('./checkedbox.png')} style={styles.image} />
-    ),
-    unchecked: (
-      <Image source={require('./uncheckedbox.png')} style={styles.image} />
-    ),
-  },
-  radio: {
-    checked: (
-      <Image source={require('./radiochecked.png')} style={styles.image} />
-    ),
-    unchecked: (
-      <Image source={require('./radiounchecked.png')} style={styles.image} />
-    ),
-  },
-};
 
 export default ListElement;

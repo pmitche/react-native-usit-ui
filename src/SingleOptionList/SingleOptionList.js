@@ -1,9 +1,25 @@
 // @flow
 import React from 'react';
-import { ScrollView } from 'react-native';
+import { Image, ScrollView } from 'react-native';
 import ListElement from '../ListElement';
+import { midValue } from '../styles/constants';
 
-import type { ListItem } from '../ListElement';
+import type { ListItem } from '../ListElement/ListElement';
+
+const defaultIcons = {
+  checked: (
+    <Image
+      source={require('./radiochecked.png')}
+      style={{ height: midValue * 36, width: midValue * 36 }}
+    />
+  ),
+  unchecked: (
+    <Image
+      source={require('./radiounchecked.png')}
+      style={{ height: midValue * 36, width: midValue * 36 }}
+    />
+  ),
+};
 
 type Props = {
   items: Array<ListItem>,
@@ -44,8 +60,7 @@ class SingleOptionList extends React.Component<Props, States> {
           <ListElement
             key={element.id}
             item={element}
-            type="radio"
-            icons={icons}
+            icons={icons ? icons : defaultIcons}
             color={color}
             selected={this.state.selected === element.id}
             onPress={() => this.onSelect(element.id)}
