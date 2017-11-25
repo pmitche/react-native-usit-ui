@@ -9,16 +9,17 @@ Techonology - University in Oslo!**
 $ yarn add react-native-usit-ui
 ```
 
-## Setting of vector icons
+## Installing Vector Icons
 
-You can see [this repo](https://github.com/oblador/react-native-vector-icons)
-for much more information.
-
-### React Native Link (recommended)
+These components dependes on `react-native-vector-icons`, so make sure to run:
 
 ```bash
+$ yarn add react-native-vector-icons
 $ react-native link react-native-vector-icons
 ```
+
+or follow the
+[official instructions](https://github.com/oblador/react-native-vector-icons#installation).
 
 # Components
 
