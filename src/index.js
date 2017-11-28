@@ -1,5 +1,5 @@
 // components
-export Button from './Button'
-export ListElement from './ListElement'
-export MultipleOptionList from './MultipleOptionList'
-export SingleOptionList from './SingleOptionList'
+export { default as Button } from './Button';
+export { default as ListElement } from './ListElement';
+export { default as MultipleOptionList } from './MultipleOptionList';
+export { default as SingleOptionList } from './SingleOptionList';

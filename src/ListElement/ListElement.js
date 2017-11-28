@@ -25,13 +25,17 @@ type Props = {
   item: ListItem,
   selected: boolean,
   onPress: () => void,
-  icons: { checked: React.Component<*>, unchecked: React.Component<*> },
-  color: ?string,
+  icons: {
+    checked: (color: string) => React.Component<*>,
+    unchecked: (color: string) => React.Component<*>,
+  },
+  color?: string,
 };
 
 class ListElement extends React.Component<Props> {
   static defaultProps = {
     color: colors.primary,
+    onPress: () => {},
   };
 
   shouldComponentUpdate(nextProps: Props) {
@@ -58,7 +62,7 @@ class ListElement extends React.Component<Props> {
       >
         <View style={{ flexDirection: 'row' }}>
           <View style={styles.iconContainer}>
-            {selected ? icons.checked : icons.unchecked}
+            {selected ? icons.checked(color) : icons.unchecked(color)}
           </View>
           <View style={styles.text}>
             <Text

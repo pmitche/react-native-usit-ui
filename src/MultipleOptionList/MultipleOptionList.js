@@ -1,31 +1,20 @@
 // @flow
 import React from 'react';
-import { Image, ScrollView } from 'react-native';
+import { View, Image, ScrollView } from 'react-native';
 import ListElement from '../ListElement';
 import { midValue } from '../styles/constants';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 import type { ListItem } from '../ListElement/ListElement';
-
-const defaultIcons = {
-  checked: (
-    <Image
-      source={require('./checkedbox.png')}
-      style={{ height: midValue * 36, width: midValue * 36 }}
-    />
-  ),
-  unchecked: (
-    <Image
-      source={require('./uncheckedbox.png')}
-      style={{ height: midValue * 36, width: midValue * 36 }}
-    />
-  ),
-};
 
 type Props = {
   items: Array<ListItem>,
   onChange: (result: Array<string | number>) => void,
   color?: string,
-  icons?: { checked: React.Component<*>, unchecked: React.Component<*> },
+  icons?: {
+    checked: (color: string) => React.Component<*>,
+    unchecked: (color: string) => React.Component<*>,
+  },
 };
 
 type State = {
@@ -33,6 +22,13 @@ type State = {
 };
 
 class MultipleOptionList extends React.Component<Props, State> {
+  static defaultProps = {
+    icons: {
+      checked: (color: string) => ImageIcon(color, 'checked'),
+      unchecked: (color: string) => ImageIcon(color, 'unchecked'),
+    },
+  };
+
   constructor(props: Props) {
     super(props);
     this.state = {
@@ -63,7 +59,7 @@ class MultipleOptionList extends React.Component<Props, State> {
           <ListElement
             key={element.id}
             item={element}
-            icons={icons ? icons : defaultIcons}
+            icons={icons}
             color={color}
             selected={this.state.selected.includes(element.id)}
             onPress={() => this.onSelect(element.id)}
@@ -73,5 +69,22 @@ class MultipleOptionList extends React.Component<Props, State> {
     );
   }
 }
+
+const ImageIcon = (color: string, type: 'checked' | 'unchecked') => (
+  <View style={{ borderRadius: 5, backgroundColor: 'white' }}>
+    <Image
+      source={
+        type === 'checked'
+          ? require('./checkedbox.png')
+          : require('./uncheckedbox.png')
+      }
+      style={{
+        height: midValue * 36,
+        width: midValue * 36,
+        tintColor: type === 'checked' ? undefined : color,
+      }}
+    />
+  </View>
+);
 
 export default MultipleOptionList;
