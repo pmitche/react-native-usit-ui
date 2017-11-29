@@ -29,3 +29,4 @@ Here is a list of all component included in this library.
 * [ListElement](./docs/ListElement.md)
 * [SingleOptionList](./docs/SingleOptionList.md)
 * [MultipleOptionList](./docs/MultipleOptionList.md)
+* [MenuButton](./docs/MenuButton.md)
