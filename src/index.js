@@ -4,3 +4,4 @@ export { default as MultipleOptionList } from './MultipleOptionList';
 export { default as SingleOptionList } from './SingleOptionList';
 export { default as MenuButton } from './MenuButton';
 export { default as Divider } from './Divider';
+export { default as UiOFooter } from './UiOFooter';
