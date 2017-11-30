@@ -1,13 +1,12 @@
 import * as React from 'react';
 import { Image, Dimensions, TouchableWithoutFeedback } from 'react-native';
 
-const { width, height } = Dimensions.get('window');
+const { width } = Dimensions.get('window');
 
 type UiOFooterProps = {
   onPress: () => void,
   numberOfTriesBeforeAction?: number,
   touchInterval?: ?number,
-  children?: React.Node,
 };
 
 type UiOFooterState = {
@@ -19,7 +18,6 @@ class UiOFooter extends React.Component<UiOFooterProps, UiOFooterState> {
   static defaultProps = {
     numberOfTriesBeforeAction: 7,
     touchInterval: 0.5, // 30 seconds
-    children: React.Node,
   };
 
   constructor(props: UiOFooterProps) {
