@@ -67,16 +67,39 @@ const icons = {
 ### API
 
 ```js
+const ImageIcon = (color: string, type: 'checked' | 'unchecked') => (
+  <View style={{ borderRadius: midValue * 36 / 2, backgroundColor: 'white' }}>
+    <Image
+      source={
+        type === 'checked'
+          ? require('./radiochecked.png')
+          : require('./radiounchecked.png')
+      }
+      style={{
+        height: midValue * 36,
+        width: midValue * 36,
+        tintColor: color,
+      }}
+    />
+  </View>
+);
+
 type ListItem = {
   id: string,
   text: string,
   subText?: string,
 };
 
-type Props = {
-  items: Array<ListItem>,
-  onChange: (result: string | number) => void,
-  color?: string, //default is #2294A8
-  icons?: { checked: React.Component<*>, unchecked: React.Component<*> },
-};
+| Prop          | Default    | Type     | Description |
+| :------------ |:-----------|:--------:|:------------|
+| items | null | `Array<ListItem>` | Data element to be inserted
+| onChange | null | `(result: Array<string | number>) => void`| Callback with result whenever you clock on a listelement
+| color | #2294A8 | `string`| Color of the button
+| icons  | `{
+      checked: (color: string) => ImageIcon(color, 'checked'),
+      unchecked: (color: string) => ImageIcon(color, 'unchecked'),
+    }` | `{
+    checked: (color: string) => React.Component<*>,
+    unchecked: (color: string) => React.Component<*>,
+  }` | Icons should be added as an object. Can be react-native-vector-icons or Image
 ```
