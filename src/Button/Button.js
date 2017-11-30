@@ -21,6 +21,7 @@ class Button extends React.Component<Props> {
     large: false,
     text: 'Big button',
     color: colors.primary,
+    onPress: () => {},
   };
 
   render() {

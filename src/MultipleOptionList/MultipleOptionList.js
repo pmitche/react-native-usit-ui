@@ -3,7 +3,6 @@ import React from 'react';
 import { View, Image, ScrollView } from 'react-native';
 import ListElement from '../ListElement';
 import { midValue } from '../styles/constants';
-import Icon from 'react-native-vector-icons/FontAwesome';
 
 import type { ListItem } from '../ListElement/ListElement';
 
