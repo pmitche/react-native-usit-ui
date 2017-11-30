@@ -14,6 +14,7 @@ type Props = {
     checked: (color: string) => React.Component<*>,
     unchecked: (color: string) => React.Component<*>,
   },
+  defaultSelected?: number | string,
 };
 
 type States = {
@@ -40,6 +41,12 @@ class SingleOptionList extends React.Component<Props, States> {
     this.props.onChange(id);
   }
 
+  useDefaultOrStateSelected(elementId: number | string) {
+    return this.props.defaultSelected && this.state.selected === undefined
+      ? elementId === this.props.defaultSelected
+      : this.state.selected === elementId;
+  }
+
   render() {
     const { color, icons, items } = this.props;
 
@@ -57,7 +64,7 @@ class SingleOptionList extends React.Component<Props, States> {
             item={element}
             icons={icons}
             color={color}
-            selected={this.state.selected === element.id}
+            selected={this.useDefaultOrStateSelected(element.id)}
             onPress={() => this.onSelect(element.id)}
           />
         ))}

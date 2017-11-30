@@ -57,6 +57,7 @@ const icons = {
           items={data}
           color="#f4414d" // Note that HEX value is required, due to opacity design
           icons={icons} // If not specified, default icons are used
+          defaultSelected="c"
           onChange={result => console.log(result)}
         />
       </ScrollView>
@@ -72,6 +73,7 @@ const icons = {
 | items           | null       | Array<ListItem>       | Data element to be inserted
 | onChange        | null       | (result: Array<string | number>) => void| Callback with result whenever you clock on a listelement
 | color           | #2294A8    | string                | Color of the button
+| defaultSelected | null       | number | string       | Default selected element. Must match one of the object.id in items
 | icons           | { checked: (color: string) => ImageIcon(color, checked), unchecked: (color: string) => ImageIcon(color, unchecked) } |
  { checked: (color: string) => React.Component<*>, unchecked:(color: string) => React.Component<*> } | Icons should be added as an object. Can be react-native-vector-icons or Image
 
