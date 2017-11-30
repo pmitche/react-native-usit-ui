@@ -67,7 +67,16 @@ const icons = {
 ### API
 
 ```js
-const ImageIcon = (color: string, type: 'checked' | 'unchecked') => (
+| Prop          | Default    | Type                                       | Description                                              |
+| :------------ |:-----------|:------------------------------------------:|:---------------------------------------------------------|
+| items         | null       | `Array<ListItem>`                          | Data element to be inserted
+| onChange      | null       | `(result: Array<string | number>) => void` | Callback with result whenever you clock on a listelement
+| color         | #2294A8    | `string`                                   | Color of the button
+| icons         | `{ checked: (color: string) => ImageIcon(color, 'checked'), unchecked: (color: string) => ImageIcon(color, 'unchecked') }` |
+ `{ checked: (color: string) => React.Component<*>, unchecked:(color: string) => React.Component<*> }` | Icons should be added as an object. Can be react-native-vector-icons or Image
+
+
+ const ImageIcon = (color: string, type: 'checked' | 'unchecked') => (
   <View style={{ borderRadius: 5, backgroundColor: 'white' }}>
     <Image
       source={
@@ -85,22 +94,10 @@ const ImageIcon = (color: string, type: 'checked' | 'unchecked') => (
   </View>
 );
 
+
 type ListItem = {
   id: string,
   text: string,
   subText?: string,
 };
-
-| Prop          | Default    | Type     | Description |
-| :------------ |:-----------|:--------:|:------------|
-| items | null | `Array<ListItem>` | Data element to be inserted
-| onChange | null | `(result: Array<string | number>) => void`| Callback with result whenever you clock on a listelement
-| color | #2294A8 | `string`| Color of the button
-| icons  | `{
-      checked: (color: string) => ImageIcon(color, 'checked'),
-      unchecked: (color: string) => ImageIcon(color, 'unchecked'),
-    }` | `{
-    checked: (color: string) => React.Component<*>,
-    unchecked: (color: string) => React.Component<*>,
-  }` | Icons should be added as an object. Can be react-native-vector-icons or Image
 ```

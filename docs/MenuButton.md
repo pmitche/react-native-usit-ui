@@ -38,13 +38,13 @@ import { MenuButton } from 'react-native-usit-ui';
 ### API
 
 ```js
-| Prop          | Default    | Type     | Description |
-| :------------ |:-----------|:--------:|:------------|
-| text | 'Menu button' | string | text in button
-| onPress | () => {} | () => void)| action to occur when button is pressed
-| color | #2294A8 | string | color of the button and icons
-| icon  | <MaterialIcons name="person" size={50} color={disabled ? color : colors.white}> | React.Component<*> | Icon in button. Can be any component like react-native-vector-icons or Image component
-| setElementsHorizontal | false | boolean | Set both the text and icon horizontal
-| fontSize | 30 | number | FontSize of text
-| disabled | false | boolean | Invert the color of button and disable onPress on button
+| Prop                  | Default       | Type        | Description                                               |
+| :-------------------- |:------------- |:-----------:|:----------------------------------------------------------|
+| text                  | 'Menu button' | string      | text in button
+| onPress               | () => {}      | () => void) | action to occur when button is pressed
+| color                 | #2294A8       | string      | color of the button and icons
+| setElementsHorizontal | false         | boolean     | Set both the text and icon horizontal
+| fontSize              | 30            | number      | FontSize of text
+| disabled              | false         | boolean     | Invert the color of button and disable onPress on button
+| icon                  | <MaterialIcons name="person" size={50} color={disabled ? color : colors.white}> | React.Component<*> | Icon in button. Can be any component like react-native-vector-icons or Image component
 ```
