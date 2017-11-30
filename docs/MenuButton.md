@@ -38,22 +38,13 @@ import { MenuButton } from 'react-native-usit-ui';
 ### API
 
 ```js
-type Props = {
-  text: string,
-  onPress: () => void,
-  color?: string,
-  icon?: React.Component<*>,
-  row?: boolean,
-  fontSize?: number,
-  disabled?: boolean,
-};
-
-static defaultProps = {
-  text: 'Menu button',
-  onPress: () => {},
-  color: colors.primary,
-  row: false,
-  fontSize: 30,
-  disabled: false,
-};
+| Prop          | Default    | Type     | Description |
+| :------------ |:-----------|:--------:|:------------|
+| text | 'Menu button' | string | text in button
+| onPress | () => {} | () => void)| action to occur when button is pressed
+| color | #2294A8 | string | color of the button and icons
+| icon  | <MaterialIcons name="person" size={50} color={disabled ? color : colors.white}> | React.Component<*> | Icon in button. Can be any component like react-native-vector-icons or Image component
+| setElementsHorizontal | false | boolean | Set both the text and icon horizontal
+| fontSize | 30 | number | FontSize of text
+| disabled | false | boolean | Invert the color of button and disable onPress on button
 ```

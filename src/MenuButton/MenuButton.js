@@ -17,7 +17,7 @@ type Props = {
   onPress: () => void,
   color?: string,
   icon?: React.Component<*>,
-  row?: boolean,
+  setElementsHorizontal?: boolean,
   fontSize?: number,
   disabled?: boolean,
 };
@@ -27,18 +27,26 @@ class MenuButton extends React.Component<Props> {
     text: 'Menu button',
     onPress: () => {},
     color: colors.primary,
-    row: false,
+    setElementsHorizontal: false,
     fontSize: 30,
     disabled: false,
   };
 
   render() {
-    const { disabled, text, color, icon, fontSize, onPress, row } = this.props;
+    const {
+      disabled,
+      text,
+      color,
+      icon,
+      fontSize,
+      onPress,
+      setElementsHorizontal,
+    } = this.props;
 
     return (
       <TouchableOpacity
-        activeOpacity={constants.activeOpacity}
-        onPress={() => onPress()}
+        activeOpacity={disabled ? 1 : constants.activeOpacity}
+        onPress={() => (disabled ? {} : onPress())}
         style={{
           flex: 1,
           width: width * 0.9,
@@ -52,11 +60,11 @@ class MenuButton extends React.Component<Props> {
       >
         <View
           style={{
-            flexDirection: row ? 'row' : undefined,
+            flexDirection: setElementsHorizontal ? 'row' : undefined,
             alignItems: 'center',
           }}
         >
-          <View style={row ? styles.rowIcon : undefined}>
+          <View style={setElementsHorizontal ? styles.rowIcon : undefined}>
             {icon ? (
               icon
             ) : (
@@ -67,7 +75,7 @@ class MenuButton extends React.Component<Props> {
               />
             )}
           </View>
-          <View style={row ? styles.rowText : undefined}>
+          <View style={setElementsHorizontal ? styles.rowText : undefined}>
             <Text
               style={{
                 color: disabled ? color : colors.white,
