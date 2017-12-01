@@ -31,3 +31,4 @@ Here is a list of all component included in this library.
 * [MenuButton](./docs/MenuButton.md)
 * [UiOFooter](./docs/UiOFooter.md)
 * [Divider](./docs/Divider.md)
+* [Stepper](./docs/Stepper.md)

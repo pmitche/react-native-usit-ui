@@ -14,6 +14,7 @@ type StepperProps = {
   maxValue?: number,
   color?: string,
   initialValue?: number,
+  onChange: (result: number) => void,
 };
 
 type StepperState = {
@@ -25,6 +26,10 @@ class Stepper extends React.Component<StepperProps, StepperState> {
   longHoldInterval: number;
   maxValue: number;
   color: string;
+
+  static defaultProps = {
+    onChange: () => {},
+  };
 
   constructor(props: StepperProps) {
     super(props);
@@ -44,6 +49,7 @@ class Stepper extends React.Component<StepperProps, StepperState> {
       : 0;
     const newValue = Math.min(tempNew, this.maxValue);
     this.setState({ value: newValue });
+    this.props.onChange(newValue);
   }
 
   decrease(interval: number) {
@@ -52,6 +58,7 @@ class Stepper extends React.Component<StepperProps, StepperState> {
       : 0;
 
     this.setState({ value: newValue });
+    this.props.onChange(newValue);
   }
 
   render() {
