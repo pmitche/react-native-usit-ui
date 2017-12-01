@@ -1,7 +1,7 @@
-# React Native Usit Ui
+# React Native USIT UI
 
-**Fantastic components created by USIT (University Center for Information
-Techonology - University in Oslo!**
+**React Native components created by USIT (University Center for Information
+Techonology) - University in Oslo**
 
 # Getting Started
 
@@ -26,7 +26,6 @@ or follow the
 Here is a list of all component included in this library.
 
 * [Button](./docs/Button.md)
-* [ListElement](./docs/ListElement.md)
 * [SingleOptionList](./docs/SingleOptionList.md)
 * [MultipleOptionList](./docs/MultipleOptionList.md)
 * [MenuButton](./docs/MenuButton.md)
