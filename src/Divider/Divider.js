@@ -13,7 +13,7 @@ const Divider = ({ style }: { style?: Object }) => (
         marginVertical: 15,
         backgroundColor: '#B6B6B6',
       },
-      style && style,
+      style,
     ]}
   />
 );
