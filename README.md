@@ -29,3 +29,5 @@ Here is a list of all component included in this library.
 * [SingleOptionList](./docs/SingleOptionList.md)
 * [MultipleOptionList](./docs/MultipleOptionList.md)
 * [MenuButton](./docs/MenuButton.md)
+* [UiOFooter](./docs/UiOFooter.md)
+* [Divider](./docs/Divider.md)
