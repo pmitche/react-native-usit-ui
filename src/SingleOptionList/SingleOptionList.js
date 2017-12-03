@@ -14,6 +14,7 @@ type Props = {
     checked: (color: string) => React.Component<*>,
     unchecked: (color: string) => React.Component<*>,
   },
+  defaultSelected?: number | string,
 };
 
 type States = {
@@ -31,7 +32,7 @@ class SingleOptionList extends React.Component<Props, States> {
   constructor(props: Props) {
     super(props);
     this.state = {
-      selected: undefined,
+      selected: props.defaultSelected,
     };
   }
 

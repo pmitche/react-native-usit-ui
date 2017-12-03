@@ -16,7 +16,7 @@ const midValue = width / height;
 const rowHeight = height * 0.08;
 
 export type ListItem = {
-  id: string,
+  id: string | number,
   text: string,
   subText?: string,
 };
