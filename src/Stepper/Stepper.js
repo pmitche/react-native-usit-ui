@@ -9,10 +9,10 @@ import { colors } from '../styles';
 const { height, width } = Dimensions.get('window');
 
 type StepperProps = {
-  interval?: number,
-  longHoldInterval?: number,
-  maxValue?: number,
-  color?: string,
+  interval: number,
+  longHoldInterval: number,
+  maxValue: number,
+  color: string,
   initialValue?: number,
   onChange: (result: number) => void,
 };
@@ -22,21 +22,16 @@ type StepperState = {
 };
 
 class Stepper extends React.Component<StepperProps, StepperState> {
-  interval: number;
-  longHoldInterval: number;
-  maxValue: number;
-  color: string;
-
   static defaultProps = {
     onChange: () => {},
+    interval: 0.5,
+    longHoldInterval: 2,
+    maxValue: Number.MAX_VALUE,
+    color: colors.primary,
   };
 
   constructor(props: StepperProps) {
     super(props);
-    this.interval = this.props.interval || 0.5;
-    this.longHoldInterval = this.props.longHoldInterval || 2;
-    this.maxValue = this.props.maxValue || Number.MAX_VALUE;
-    this.color = this.props.color || colors.primary;
 
     this.state = {
       value: props.initialValue || 0,
@@ -47,7 +42,7 @@ class Stepper extends React.Component<StepperProps, StepperState> {
     const tempNew: number = isNumber(this.state.value)
       ? Number(this.state.value) + interval
       : 0;
-    const newValue = Math.min(tempNew, this.maxValue);
+    const newValue = Math.min(tempNew, this.props.maxValue);
     this.setState({ value: newValue });
     this.props.onChange(newValue);
   }
@@ -62,11 +57,13 @@ class Stepper extends React.Component<StepperProps, StepperState> {
   }
 
   render() {
+    const { color, interval, longHoldInterval, maxValue } = this.props;
+
     return (
       <View
         style={{
           flexDirection: 'row',
-          borderColor: this.color,
+          borderColor: color,
           width: width * 0.45,
           height: height * 0.075,
           borderRadius: 5,
@@ -75,25 +72,23 @@ class Stepper extends React.Component<StepperProps, StepperState> {
       >
         <StepperButton
           iconName="remove"
-          color={this.color}
+          color={color}
           action={interval => this.decrease(interval)}
-          interval={this.interval}
-          longHoldInterval={this.longHoldInterval}
+          interval={interval}
+          longHoldInterval={longHoldInterval}
           enabled={
-            isNumber(this.state.value) &&
-            Number(this.state.value) >= this.interval
+            isNumber(this.state.value) && Number(this.state.value) >= interval
           }
         />
-        <StepperValue color={this.color} value={this.state.value} />
+        <StepperValue color={color} value={this.state.value} />
         <StepperButton
           iconName="add"
-          color={this.color}
+          color={color}
           action={interval => this.increase(interval)}
-          interval={this.interval}
-          longHoldInterval={this.longHoldInterval}
+          interval={interval}
+          longHoldInterval={longHoldInterval}
           enabled={
-            !isNumber(this.state.value) ||
-            Number(this.state.value) < this.maxValue
+            !isNumber(this.state.value) || Number(this.state.value) < maxValue
           }
         />
       </View>
