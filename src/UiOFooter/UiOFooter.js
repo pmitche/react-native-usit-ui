@@ -38,7 +38,7 @@ class UiOFooter extends React.Component<UiOFooterProps, UiOFooterState> {
       ? this.generateNewDeadline(this.props.touchInterval)
       : null;
 
-  incrementUiOFooter = () => {
+  incrementTouchCounter = () => {
     if (
       this.state.touchCounterDeadline &&
       new Date() > this.state.touchCounterDeadline
@@ -64,7 +64,7 @@ class UiOFooter extends React.Component<UiOFooterProps, UiOFooterState> {
 
   render() {
     return (
-      <TouchableWithoutFeedback onPress={() => this.incrementUiOFooter()}>
+      <TouchableWithoutFeedback onPress={() => this.incrementTouchCounter()}>
         <Image
           style={{
             alignSelf: 'center',
