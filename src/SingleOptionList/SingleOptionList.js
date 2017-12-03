@@ -32,19 +32,13 @@ class SingleOptionList extends React.Component<Props, States> {
   constructor(props: Props) {
     super(props);
     this.state = {
-      selected: undefined,
+      selected: props.defaultSelected,
     };
   }
 
   onSelect(id: number | string) {
     this.setState({ selected: id });
     this.props.onChange(id);
-  }
-
-  useDefaultOrStateSelected(elementId: number | string) {
-    return this.props.defaultSelected && this.state.selected === undefined
-      ? elementId === this.props.defaultSelected
-      : this.state.selected === elementId;
   }
 
   render() {
@@ -64,7 +58,7 @@ class SingleOptionList extends React.Component<Props, States> {
             item={element}
             icons={icons}
             color={color}
-            selected={this.useDefaultOrStateSelected(element.id)}
+            selected={this.state.selected === element.id}
             onPress={() => this.onSelect(element.id)}
           />
         ))}
