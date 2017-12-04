@@ -10,8 +10,8 @@
     "react-native-vector-icons": "^4.4.2"
   },
   "repository": {
-    "type": "bitbucket",
-    "url": "ssh://git@bitbucket.usit.uio.no:7999/mob/react-native-usit-ui.git"
+    "type": "git",
+    "url": "https://github.com/unioslo/react-native-usit-ui"
   },
   "devDependencies": {
     "babel-eslint": "^8.0.2",
