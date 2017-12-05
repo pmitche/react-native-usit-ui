@@ -13,7 +13,7 @@ $ yarn add react-native-usit-ui
 
 ## Installing Vector Icons
 
-These components dependes on `react-native-vector-icons`, so make sure to run:
+These components depends on `react-native-vector-icons`, so make sure to run:
 
 ```bash
 $ yarn add react-native-vector-icons
