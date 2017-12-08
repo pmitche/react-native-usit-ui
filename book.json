@@ -1,0 +1,10 @@
+{
+    "root": "./docs",
+    "title": "react-native-usit-ui",
+    "plugins": [ "prism", "-highlight", "github" ],
+    "pluginsConfig": {
+        "github": {
+            "url": "https://github.com/unioslo/react-native-usit-ui"
+        }
+    }
+}
