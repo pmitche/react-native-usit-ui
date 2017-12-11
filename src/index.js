@@ -6,3 +6,4 @@ export { default as MenuButton } from './MenuButton';
 export { default as Divider } from './Divider';
 export { default as UiOFooter } from './UiOFooter';
 export { default as Stepper } from './Stepper';
+export { default as Slider } from './Slider';
