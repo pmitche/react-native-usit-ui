@@ -35,3 +35,4 @@ Here is a list of all component included in this library.
 * [Divider](./docs/Divider.md)
 * [Stepper](./docs/Stepper.md)
 * [Slider](./docs/Slider.md)
+* [Accordion](./docs/Accordion.md)
