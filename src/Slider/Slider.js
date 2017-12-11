@@ -6,20 +6,18 @@ import { PanResponder, StyleSheet, Text, View, Dimensions } from 'react-native';
 const { width } = Dimensions.get('window');
 
 type SliderProps = {
-  onValueChange: number => void,
   size: number,
   min: number,
   max: number,
-  value: number,
-  vertical: boolean,
+  initialValue: number,
+  hideMarkers: boolean,
+  color: string,
+  labels?: string[],
+  vertical?: boolean,
+  onValueChange: number => void,
   thumbStyle: View.propTypes.style,
-  trackStyle: View.propTypes.style,
-  markerStyle: {
-    backgroundColor: string,
-    height: number,
-    width: number,
-  },
-  stepText: string[],
+  lineStyle: View.propTypes.style,
+  markerStyle: View.propTypes.style,
 };
 
 type SliderState = {
@@ -43,27 +41,19 @@ class Slider extends React.Component<SliderProps, SliderState> {
     size: width * 0.9,
     min: 0,
     max: 100,
-    value: 0,
-    vertical: false,
-    stepText: undefined,
-    markerStyle: {
-      width: 10,
-      backgroundColor: '#b3b3b3',
-      height: 10,
-      borderRadius: 10 / 2,
-    },
-    trackStyle: { backgroundColor: 'black', height: 1 },
+    initialValue: -1000,
     thumbStyle: {
       width: 25,
       height: 25,
       borderRadius: 25 / 2,
-      backgroundColor: '#2294A8',
     },
+    color: '#2294A8',
+    hideMarkers: false,
   };
 
   trackSize: number;
   numberOfSteps: number;
-  previousLeft: number;
+  previousPosition: number;
   trackOffsetX: number;
   trackOffsetY: number;
 
@@ -74,18 +64,16 @@ class Slider extends React.Component<SliderProps, SliderState> {
 
   constructor(props: SliderProps) {
     super(props);
-    const thumbSize = this.props.thumbStyle.width;
-
     this.state = {
-      value: this.props.value,
+      value: props.initialValue,
       position: 0,
       measured: false,
-      thumbSize,
+      thumbSize: props.thumbStyle.width,
     };
 
-    this.trackSize = this.props.size - thumbSize;
-    this.numberOfSteps = this.props.max - this.props.min;
-    this.previousLeft = 0;
+    this.trackSize = props.size - props.thumbStyle.width;
+    this.numberOfSteps = props.max - props.min;
+    this.previousPosition = 0;
     this.trackOffsetX = -1;
     this.trackOffsetY = -1;
   }
@@ -110,7 +98,6 @@ class Slider extends React.Component<SliderProps, SliderState> {
       onPanResponderRelease: () => this.handleTrackRelease(),
       onPanResponderTerminate: () => this.handleTrackRelease(),
     });
-    this.previousLeft = 0;
   }
 
   componentDidMount() {
@@ -122,7 +109,7 @@ class Slider extends React.Component<SliderProps, SliderState> {
       this.trackOffsetX = px;
       this.trackOffsetY = py;
       this.setState({ measured: true });
-      this.convertValueToPosition(this.props.value);
+      this.convertToInitialPosition(this.props.initialValue);
     });
   };
 
@@ -146,15 +133,15 @@ class Slider extends React.Component<SliderProps, SliderState> {
     let value;
 
     if (rangeOfTrack < 0) {
-      this.previousLeft = 0;
+      this.previousPosition = 0;
       position = 0;
       value = this.props.min;
     } else if (rangeOfTrack > this.numberOfSteps) {
-      this.previousLeft = sizeOfTrack;
+      this.previousPosition = sizeOfTrack;
       position = sizeOfTrack;
       value = this.props.max;
     } else {
-      this.previousLeft = relativeThumbPosition;
+      this.previousPosition = relativeThumbPosition;
       position = relativeThumbPosition;
       value = result + this.props.min;
     }
@@ -163,12 +150,13 @@ class Slider extends React.Component<SliderProps, SliderState> {
 
   handlePanResponderEnd(e: SyntheticTouchEventLike, gestureState: Object) {
     if (this.props.vertical) {
-      this.previousLeft -= gestureState.dy;
+      this.previousPosition -= gestureState.dy;
     } else {
-      this.previousLeft += gestureState.dx;
+      this.previousPosition += gestureState.dx;
     }
-    if (this.previousLeft < 0) this.previousLeft = 0;
-    if (this.previousLeft > this.trackSize) this.previousLeft = this.trackSize;
+    if (this.previousPosition < 0) this.previousPosition = 0;
+    if (this.previousPosition > this.trackSize)
+      this.previousPosition = this.trackSize;
 
     this.props.onValueChange(this.state.value);
   }
@@ -176,28 +164,29 @@ class Slider extends React.Component<SliderProps, SliderState> {
   handleMove(e: SyntheticTouchEventLike, gestureState: Object) {
     let position;
     if (this.props.vertical) {
-      position = this.previousLeft - gestureState.dy;
+      position = this.previousPosition - gestureState.dy;
     } else {
-      position = this.previousLeft + gestureState.dx;
+      position = this.previousPosition + gestureState.dx;
     }
 
     if (position < -1) position = 0;
     if (position > this.trackSize + 1) position = this.trackSize;
 
-    this.convertValue(position);
+    const roundedValue = Math.round(
+      position / this.trackSize * this.numberOfSteps,
+    );
+    const computedPosition = roundedValue / this.numberOfSteps * this.trackSize;
+
+    this.setState({
+      position: computedPosition,
+      value: roundedValue + this.props.min,
+    });
   }
 
-  convertValue(pos: number) {
-    if (pos > this.trackSize + 1) pos = this.trackSize;
-    const value = Math.round(pos / this.trackSize * this.numberOfSteps);
-    const position = value / this.numberOfSteps * this.trackSize;
-    this.setState({ position, value: value + this.props.min });
-  }
-
-  convertValueToPosition(value: number) {
+  convertToInitialPosition(value: number) {
     const roundedValue = Math.round(value);
     const position = value / this.numberOfSteps * this.trackSize;
-    this.previousLeft = position;
+    this.previousPosition = position;
     this.setState({ position, value: roundedValue });
   }
 
@@ -205,12 +194,17 @@ class Slider extends React.Component<SliderProps, SliderState> {
     const {
       size,
       vertical,
-      stepText,
-      trackStyle,
+      labels,
+      lineStyle,
       min,
+      max,
       thumbStyle,
       markerStyle,
+      color,
+      hideMarkers,
     } = this.props;
+
+    let valueInTrackRange = this.state.value <= max && this.state.value >= min;
 
     return (
       <View
@@ -221,10 +215,10 @@ class Slider extends React.Component<SliderProps, SliderState> {
           flexDirection: vertical ? 'row' : 'column',
         }}
       >
-        <View style={{ flex: vertical ? 1 : 0 }} />
+        <View style={{ flex: vertical && labels ? 1 : 0 }} />
         <View
           style={{
-            flex: vertical ? 0.2 : 0,
+            flex: vertical ? (labels ? 0.2 : 1) : 0, // If slider set to vertical, but no label assigned
             alignItems: 'center',
             margin: 5,
           }}
@@ -251,40 +245,61 @@ class Slider extends React.Component<SliderProps, SliderState> {
                   this.trackContainer = container;
                 }}
                 hitSlop={{ top: 10, bottom: 30, left: 30, right: 10 }}
-                style={[
-                  {
-                    width: this.trackSize,
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                  },
-                ]}
+                style={{
+                  width: this.trackSize,
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}
               >
-                <SliderLine style={trackStyle} width={this.trackSize} />
-                {this.numberOfSteps <= 10 && (
-                  <SliderMarkers
-                    markerCount={this.numberOfSteps}
-                    width={this.trackSize}
-                    style={markerStyle}
-                  />
-                )}
+                <SliderLine
+                  style={[styles.defaultTrackStyle, lineStyle]}
+                  width={this.trackSize}
+                />
+                {!hideMarkers &&
+                  this.numberOfSteps <= 10 && (
+                    <SliderMarkers
+                      markerCount={this.numberOfSteps}
+                      width={this.trackSize}
+                      style={[
+                        styles.defaultMarkerStyle,
+                        markerStyle,
+                        {
+                          backgroundColor: valueInTrackRange
+                            ? '#b3b3b3'
+                            : color,
+                        },
+                      ]}
+                    />
+                  )}
               </View>
               {this.state.value >= min && (
                 <View
                   style={[styles.thumbContainer, { left: this.state.position }]}
                 >
-                  <View style={thumbStyle} {...this.panResponder.panHandlers} />
+                  <View
+                    style={[thumbStyle, { backgroundColor: color }]}
+                    {...this.panResponder.panHandlers}
+                  />
                 </View>
               )}
             </View>
           </View>
         </View>
-        <SliderLabels size={size} labels={stepText} vertical={vertical} />
+        {labels && (
+          <SliderLabels size={size} labels={labels} vertical={vertical} />
+        )}
       </View>
     );
   }
 }
 
-const SliderLine = ({ style, width }: { style: Object, width: number }) => (
+const SliderLine = ({
+  style,
+  width,
+}: {
+  style: View.propTypes.style,
+  width: number,
+}) => (
   <View pointerEvents="none" style={styles.trackContainer}>
     <View style={[{ width }, style]} />
   </View>
@@ -297,7 +312,7 @@ const SliderMarkers = ({
 }: {
   markerCount: number,
   width: number,
-  style: Object,
+  style: View.propTypes.style,
 }) => (
   <View
     pointerEvents="none"
@@ -319,36 +334,32 @@ const SliderLabels = ({
   vertical,
 }: {
   size: number,
-  labels?: Array<string>,
+  labels: Array<string>,
   vertical?: boolean,
-}) => {
-  return labels ? (
+}) => (
+  <View
+    style={{
+      flex: vertical ? 1 : 0,
+    }}
+  >
     <View
       style={{
-        flex: vertical ? 1 : 0,
+        top: vertical ? undefined : 0,
+        width: vertical ? undefined : size,
+        flexDirection: vertical ? 'column' : 'row',
+        alignSelf: 'center',
+        justifyContent: 'space-between',
+        height: vertical ? size : 20,
       }}
     >
-      <View
-        style={{
-          top: vertical ? undefined : 0,
-          width: vertical ? undefined : size,
-          flexDirection: vertical ? 'column' : 'row',
-          alignSelf: 'center',
-          justifyContent: 'space-between',
-          height: vertical ? size : 20,
-        }}
-      >
-        {labels.map((label, i) => (
-          <Text style={{ textAlign: 'center' }} key={i}>
-            {label}
-          </Text>
-        ))}
-      </View>
+      {labels.map((label, i) => (
+        <Text style={{ textAlign: 'center' }} key={i}>
+          {label}
+        </Text>
+      ))}
     </View>
-  ) : (
-    <View />
-  );
-};
+  </View>
+);
 
 const styles = StyleSheet.create({
   trackDefault: {
@@ -370,6 +381,17 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     top: 0,
     bottom: 0,
+  },
+  defaultMarkerStyle: {
+    width: 10,
+    height: 10,
+    borderRadius: 10 / 2,
+    borderWidth: 1,
+    borderColor: 'white',
+  },
+  defaultTrackStyle: {
+    backgroundColor: '#b3b3b3',
+    height: 1,
   },
 });
 
