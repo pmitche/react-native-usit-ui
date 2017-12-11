@@ -8,4 +8,5 @@
   * [MenuOptionList](MultipleOptionList.md)
   * [SingleOptionList](SingleOptionList.md)
   * [Stepper](Stepper.md)
+  * [Slider](Slider.md)
   * [UiOFooter](UiOFooter.md)
