@@ -29,7 +29,7 @@ type Props = {
     checked: (color: string) => React.Component<*>,
     unchecked: (color: string) => React.Component<*>,
   },
-  color?: string,
+  color: string,
 };
 
 class ListElement extends React.Component<Props> {
