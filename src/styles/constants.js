@@ -8,4 +8,5 @@ export default {
   buttonHeight: height * 0.09,
   borderRadius: 5,
   activeOpacity: 0.7,
+  midValue,
 };
