@@ -27,6 +27,7 @@ class SingleOptionList extends React.Component<Props, States> {
       checked: (color: string) => ImageIcon(color, 'checked'),
       unchecked: (color: string) => ImageIcon(color, 'unchecked'),
     },
+    onChange: () => {},
   };
 
   constructor(props: Props) {
