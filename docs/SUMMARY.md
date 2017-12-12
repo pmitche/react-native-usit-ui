@@ -9,4 +9,5 @@
   * [SingleOptionList](SingleOptionList.md)
   * [Stepper](Stepper.md)
   * [Slider](Slider.md)
+  * [Accordion](Accordion.md)
   * [UiOFooter](UiOFooter.md)
