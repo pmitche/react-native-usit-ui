@@ -37,3 +37,4 @@ Here is a list of all component included in this library.
 * [Slider](./docs/Slider.md)
 * [Accordion](./docs/Accordion.md)
 * [FloatingButton](./docs/FloatingButton.md)
+* [AchievementModal](./docs/AchievementModal.md)

@@ -31,6 +31,7 @@ class AchievementModal extends React.Component<Props> {
     title: 'Well done!',
     description: 'You have answered all of the questions for today!',
     closeText: 'Close',
+    visible: false,
   };
   render() {
     const {
