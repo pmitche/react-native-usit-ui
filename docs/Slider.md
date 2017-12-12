@@ -22,7 +22,7 @@ import { Slider } from 'react-native-usit-ui';
       >
       <View style={{ height: 500, justifyContent: 'space-around' }}>
         <Slider max={10} />
-        <Slider max={10} color='red' labels={['Bad', 'Good']}/>
+        <Slider max={10} color="red" labels={['Bad', 'Good']}/>
         <Slider vertical/>
         </View>
       </View>

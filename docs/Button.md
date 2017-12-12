@@ -19,9 +19,9 @@ const { width } = Dimensions.get('window')
 
         <View
             style={{
-                flexDirection: "row",
+                flexDirection: 'row',
                 width: width * 0.9,
-                justifyContent: "space-between"
+                justifyContent: 'space-between'
                 }}>
           <Button style={{ marginVertical: 40 }} text="Ja" />
           <Button style={{ marginVertical: 40 }} text="Nei" inverse />
