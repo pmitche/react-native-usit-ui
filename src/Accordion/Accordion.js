@@ -70,7 +70,7 @@ class Accordion extends Component<AccordionProps, AccordionState> {
           <View style={styles.icon}>
             <Icon
               name={
-                this.state.active ? 'keyboard-arrow-up' : 'keyboard-arrow-down'
+                this.state.active ? 'keyboard-arrow-down' : 'keyboard-arrow-up'
               }
               size={iconSize}
               color={color}
