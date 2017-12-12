@@ -9,6 +9,7 @@
   "prettier.parser": "flow",
   "prettier.semi": true,
   "prettier.useTabs": false,
+  "prettier.proseWrap": true,
   "javascript.validate.enable": false,
   "editor.formatOnSave": true,
   "editor.formatOnPaste": false
