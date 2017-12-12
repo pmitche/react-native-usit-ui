@@ -26,6 +26,7 @@ class MultipleOptionList extends React.Component<Props, State> {
       checked: (color: string) => ImageIcon(color, 'checked'),
       unchecked: (color: string) => ImageIcon(color, 'unchecked'),
     },
+    onChange: () => {},
   };
 
   constructor(props: Props) {
