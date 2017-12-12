@@ -80,8 +80,7 @@ const ImageIcon = (color: string, type: 'checked' | 'unchecked') => (
       style={{
         height: midValue * 36,
         width: midValue * 36,
-        // TODO: MOB-1236 fix checkbox icon
-        tintColor: type === 'checked' ? undefined : color,
+        tintColor: color,
       }}
     />
   </View>
