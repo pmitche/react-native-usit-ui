@@ -52,3 +52,4 @@ const { width } = Dimensions.get('window')
 | color    | `#2294A8`      |   `string`   | Color of the button                                    |
 | onPress  | `() => {}`     | `() => void` | Action to trigger when button is pressed               |
 | style    | `null`         |   `Object`   | Style object that can be merged with default style     |
+| textStyle    | `null`         |   `Object`   | Style object that can be merged with default text style     |
