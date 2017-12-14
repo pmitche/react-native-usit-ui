@@ -14,6 +14,7 @@ type Props = {
   color: string,
   onPress: () => void,
   style?: Object,
+  textStyle?: Object,
 };
 
 class Button extends React.Component<Props> {
@@ -35,6 +36,7 @@ class Button extends React.Component<Props> {
       color,
       onPress,
       style,
+      textStyle,
     } = this.props;
 
     return (
@@ -56,11 +58,16 @@ class Button extends React.Component<Props> {
         ]}
       >
         <Text
-          style={{
-            color: disabled ? colors.disabled : inverse ? color : colors.white,
-            fontWeight: 'bold',
-            fontSize: 18,
-          }}
+          style={[
+            {
+              color: disabled
+                ? colors.disabled
+                : inverse ? color : colors.white,
+              fontWeight: 'bold',
+              fontSize: 18,
+            },
+            textStyle,
+          ]}
         >
           {text}
         </Text>
