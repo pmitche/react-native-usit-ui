@@ -11,3 +11,4 @@
   * [Slider](Slider.md)
   * [Accordion](Accordion.md)
   * [UiOFooter](UiOFooter.md)
+  * [FloatingButton](FloatingButton.md)

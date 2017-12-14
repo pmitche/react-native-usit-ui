@@ -36,3 +36,4 @@ Here is a list of all component included in this library.
 * [Stepper](./docs/Stepper.md)
 * [Slider](./docs/Slider.md)
 * [Accordion](./docs/Accordion.md)
+* [FloatingButton](./docs/FloatingButton.md)
