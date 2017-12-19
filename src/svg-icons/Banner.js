@@ -2,7 +2,7 @@
 import React from 'react';
 import Svg, { G, Polygon, Text } from 'react-native-svg';
 
-export const Banner = ({
+const Banner = ({
   primary,
   secondary,
   tertiary,
@@ -71,3 +71,5 @@ export const Banner = ({
     </G>
   </Svg>
 );
+
+export default Banner;
