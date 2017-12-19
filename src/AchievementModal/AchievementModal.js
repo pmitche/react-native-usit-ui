@@ -1,26 +1,24 @@
 // @flow
 import React from 'react';
-import {
-  Image,
-  ImageBackground,
-  Dimensions,
-  Text,
-  View,
-  TouchableOpacity,
-  Modal,
-} from 'react-native';
+import { Image, Text, View, TouchableOpacity, Modal } from 'react-native';
+import { Banner } from '../svg-icons';
 
 import { colors, constants } from '../styles';
 
-const { height, width } = Dimensions.get('window');
-
 type Props = {
   bannerTitle: string,
+  bannerColor: {
+    primary: string,
+    secondary: string,
+    tertiary: string,
+  },
+  icon: React.Component<*>,
   title: string,
   description: string,
   visible: boolean,
   onClose: () => void,
   closeText: string,
+  closeTextColor: string,
   animationType: 'none' | 'slide' | 'fade',
 };
 
@@ -28,19 +26,39 @@ class AchievementModal extends React.Component<Props> {
   static defaultProps = {
     animationType: 'fade',
     bannerTitle: 'Thank you!',
+    bannerColor: {
+      primary: '#008187',
+      secondary: '#0E5956',
+      tertiary: '#36A3A0',
+    },
+    icon: (
+      <Image
+        source={require('./star.png')}
+        style={{
+          marginTop: 10,
+          height: 90,
+          width: 90,
+        }}
+        resizeMode="contain"
+      />
+    ),
     title: 'Well done!',
     description: 'You have answered all of the questions for today!',
     closeText: 'Close',
+    closeTextColor: '#008187',
     visible: false,
   };
   render() {
     const {
       bannerTitle,
+      bannerColor,
+      icon,
       title,
       description,
       closeText,
       visible,
       onClose,
+      closeTextColor,
       animationType,
     } = this.props;
     return (
@@ -58,37 +76,17 @@ class AchievementModal extends React.Component<Props> {
             backgroundColor: '#4A4A4AAA',
           }}
         >
-          <ImageBackground
-            resizeMode="contain"
-            source={require('./banner.png')}
-            style={{
-              width: width * 0.9,
-              height: constants.midValue * 100,
-            }}
-          >
-            <View
-              style={{
-                justifyContent: 'flex-end',
-                alignItems: 'center',
-                height: constants.midValue * 85,
-              }}
-            >
-              <Text
-                style={{
-                  fontSize: constants.midValue * 50,
-                  color: 'white',
-                  fontWeight: '300',
-                }}
-              >
-                {bannerTitle}
-              </Text>
-            </View>
-          </ImageBackground>
+          <Banner
+            primary={bannerColor.primary}
+            secondary={bannerColor.secondary}
+            tertiary={bannerColor.tertiary}
+            bannerTitle={bannerTitle}
+          />
           <View
             style={{
               backgroundColor: 'white',
-              width: width * 0.703,
-              height: height * 0.45,
+              width: 240,
+              height: 270,
               borderBottomLeftRadius: constants.borderRadius,
               borderBottomRightRadius: constants.borderRadius,
             }}
@@ -102,18 +100,11 @@ class AchievementModal extends React.Component<Props> {
                 borderColor: colors.gray,
               }}
             >
-              <Image
-                source={require('./star.png')}
-                style={{
-                  height: constants.midValue * 180,
-                  width: constants.midValue * 180,
-                }}
-                resizeMode="contain"
-              />
+              {icon}
               <Text
                 style={{
                   fontWeight: 'bold',
-                  fontSize: constants.midValue * 32,
+                  fontSize: 18,
                 }}
               >
                 {title}
@@ -121,7 +112,7 @@ class AchievementModal extends React.Component<Props> {
 
               <Text
                 style={{
-                  width: width * 0.55,
+                  width: 200,
                   marginBottom: 10,
                   textAlign: 'center',
                 }}
@@ -137,9 +128,7 @@ class AchievementModal extends React.Component<Props> {
                 alignItems: 'center',
               }}
             >
-              <Text
-                style={{ color: '#008187', fontSize: constants.midValue * 32 }}
-              >
+              <Text style={{ color: closeTextColor, fontSize: 16 }}>
                 {closeText}
               </Text>
             </TouchableOpacity>
