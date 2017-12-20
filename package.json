@@ -8,7 +8,7 @@
   },
   "peerDependencies": {
     "react-native-svg": "*",
-    "react-native-vector-icons": ">4"
+    "react-native-vector-icons": ">=4"
   },
   "repository": {
     "type": "git",
