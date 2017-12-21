@@ -247,6 +247,9 @@ class Slider extends React.Component<SliderProps, SliderState> {
                 hitSlop={{ top: 10, bottom: 30, left: 30, right: 10 }}
                 style={{
                   width: this.trackSize,
+                  height: markerStyle
+                    ? markerStyle.height
+                    : styles.defaultMarkerStyle.height,
                   alignItems: 'center',
                   justifyContent: 'center',
                 }}
