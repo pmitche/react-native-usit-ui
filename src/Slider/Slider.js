@@ -252,7 +252,7 @@ class Slider extends React.Component<SliderProps, SliderState> {
                   width: this.trackSize,
                   height: markerStyle
                     ? markerStyle.height
-                    : styles.defaultMarkerStyle.height,
+                    : StyleSheet.flatten(styles.defaultMarkerStyle).height,
                   alignItems: 'center',
                   justifyContent: 'center',
                 }}
