@@ -22,10 +22,10 @@ import { MenuButton } from 'react-native-usit-ui';
       >
         <View style={{ flex: 0.9 }}>
           <MenuButton />
-          <MenuButton row disabled />
+          <MenuButton setElementsHorizontal disabled />
           <MenuButton color="#8a09ed" />
           <MenuButton
-            row
+            setElementsHorizontal
             disabled
             color="#8a09ed"
             icon={<Icon name="add" size={40} color="#8a09ed" />}
@@ -46,3 +46,5 @@ import { MenuButton } from 'react-native-usit-ui';
 | fontSize              | `30`                                                                              |       `number`       | FontSize of text                                                                       |
 | disabled              | `false`                                                                           |      `boolean`       | Invert the color of button and disable onPress on button                               |
 | icon                  | `<MaterialIcons name="person" size={50} color={disabled ? color : colors.white}>` | `React.Component<*>` | Icon in button. Can be any component like react-native-vector-icons or Image component |
+| style                 | `null`                                                                            |       `Object`       | Style of the button container                                                          |
+| textStyle             | `null`                                                                            |       `Object`       | Style of the text inside the button                                                    |
