@@ -53,7 +53,7 @@ class MenuButton extends React.Component<Props> {
         onPress={() => (disabled ? {} : onPress())}
         style={[
           styles.container,
-          style,
+          StyleSheet.flatten(style),
           {
             backgroundColor: disabled ? colors.white : color,
             borderColor: color,
@@ -85,7 +85,7 @@ class MenuButton extends React.Component<Props> {
                   fontSize,
                   fontWeight: '500',
                 },
-                textStyle,
+                StyleSheet.flatten(textStyle),
               ]}
             >
               {text}
