@@ -20,6 +20,8 @@ type Props = {
   setElementsHorizontal?: boolean,
   fontSize?: number,
   disabled?: boolean,
+  textStyle?: Object,
+  style?: Object,
 };
 
 class MenuButton extends React.Component<Props> {
@@ -40,6 +42,8 @@ class MenuButton extends React.Component<Props> {
       icon,
       fontSize,
       onPress,
+      textStyle,
+      style,
       setElementsHorizontal,
     } = this.props;
 
@@ -47,16 +51,14 @@ class MenuButton extends React.Component<Props> {
       <TouchableOpacity
         activeOpacity={disabled ? 1 : constants.activeOpacity}
         onPress={() => (disabled ? {} : onPress())}
-        style={{
-          flex: 1,
-          width: width * 0.9,
-          justifyContent: 'center',
-          borderRadius: constants.borderRadius,
-          backgroundColor: disabled ? colors.white : color,
-          borderColor: color,
-          borderWidth: 2,
-          marginBottom: 15,
-        }}
+        style={[
+          styles.container,
+          StyleSheet.flatten(style),
+          {
+            backgroundColor: disabled ? colors.white : color,
+            borderColor: color,
+          },
+        ]}
       >
         <View
           style={{
@@ -77,11 +79,14 @@ class MenuButton extends React.Component<Props> {
           </View>
           <View style={setElementsHorizontal ? styles.rowText : undefined}>
             <Text
-              style={{
-                color: disabled ? color : colors.white,
-                fontSize,
-                fontWeight: '500',
-              }}
+              style={[
+                {
+                  color: disabled ? color : colors.white,
+                  fontSize,
+                  fontWeight: '500',
+                },
+                StyleSheet.flatten(textStyle),
+              ]}
             >
               {text}
             </Text>
@@ -93,6 +98,14 @@ class MenuButton extends React.Component<Props> {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    width: width * 0.9,
+    justifyContent: 'center',
+    borderRadius: constants.borderRadius,
+    borderWidth: 2,
+    marginBottom: 15,
+  },
   rowIcon: {
     flex: 0.25,
     justifyContent: 'center',
