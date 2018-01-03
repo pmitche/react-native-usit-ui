@@ -1,6 +1,6 @@
 // @flow
 import React from 'react';
-import { View, Dimensions } from 'react-native';
+import { StyleSheet, View, Dimensions } from 'react-native';
 
 const { width } = Dimensions.get('window');
 
@@ -13,7 +13,7 @@ const Divider = ({ style }: { style?: Object }) => (
         marginVertical: 15,
         backgroundColor: '#B6B6B6',
       },
-      style,
+      StyleSheet.flatten(style),
     ]}
   />
 );

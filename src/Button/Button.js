@@ -1,6 +1,6 @@
 // @flow
 import React from 'react';
-import { Dimensions, Text, TouchableOpacity } from 'react-native';
+import { Dimensions, StyleSheet, Text, TouchableOpacity } from 'react-native';
 
 import { colors, constants } from '../styles';
 
@@ -54,7 +54,7 @@ class Button extends React.Component<Props> {
             borderColor: disabled ? colors.disabled : color,
             borderWidth: 2,
           },
-          style,
+          StyleSheet.flatten(style),
         ]}
       >
         <Text
@@ -66,7 +66,7 @@ class Button extends React.Component<Props> {
               fontWeight: 'bold',
               fontSize: 18,
             },
-            textStyle,
+            StyleSheet.flatten(textStyle),
           ]}
         >
           {text}

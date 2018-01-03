@@ -65,7 +65,9 @@ class Accordion extends Component<AccordionProps, AccordionState> {
           style={{ flexDirection: 'row', justifyContent: 'space-between' }}
         >
           <View style={{ justifyContent: 'center' }}>
-            <Text style={[{ fontSize: 25 }, titleStyle]}>{title}</Text>
+            <Text style={[{ fontSize: 25 }, StyleSheet.flatten(titleStyle)]}>
+              {title}
+            </Text>
           </View>
           <View style={styles.icon}>
             <Icon
@@ -78,7 +80,9 @@ class Accordion extends Component<AccordionProps, AccordionState> {
           </View>
         </TouchableOpacity>
         {this.state.active && (
-          <Text style={[{ fontSize: 15 }, contentStyle]}>{content}</Text>
+          <Text style={[{ fontSize: 15 }, StyleSheet.flatten(contentStyle)]}>
+            {content}
+          </Text>
         )}
         <Divider />
       </View>
