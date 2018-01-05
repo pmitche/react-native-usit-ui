@@ -15,11 +15,12 @@ const { width } = Dimensions.get('window');
 type Props = {
   text: string,
   onPress: () => void,
-  color?: string,
+  color: string,
   icon?: React.Component<*>,
-  setElementsHorizontal?: boolean,
-  fontSize?: number,
-  disabled?: boolean,
+  setElementsHorizontal: boolean,
+  fontSize: number,
+  disabled: boolean,
+  inverse: boolean,
   textStyle?: Object,
   style?: Object,
 };
@@ -32,11 +33,13 @@ class MenuButton extends React.Component<Props> {
     setElementsHorizontal: false,
     fontSize: 30,
     disabled: false,
+    inverse: false,
   };
 
   render() {
     const {
       disabled,
+      inverse,
       text,
       color,
       icon,
@@ -55,8 +58,8 @@ class MenuButton extends React.Component<Props> {
           styles.container,
           StyleSheet.flatten(style),
           {
-            backgroundColor: disabled ? colors.white : color,
-            borderColor: color,
+            backgroundColor: disabled || inverse ? colors.white : color,
+            borderColor: disabled ? colors.disabled : color,
           },
         ]}
       >
@@ -73,7 +76,9 @@ class MenuButton extends React.Component<Props> {
               <Icon
                 name="person"
                 size={50}
-                color={disabled ? color : colors.white}
+                color={
+                  disabled ? colors.disabled : inverse ? color : colors.white
+                }
               />
             )}
           </View>
@@ -81,7 +86,9 @@ class MenuButton extends React.Component<Props> {
             <Text
               style={[
                 {
-                  color: disabled ? color : colors.white,
+                  color: disabled
+                    ? colors.disabled
+                    : inverse ? color : colors.white,
                   fontSize,
                   fontWeight: '500',
                 },
