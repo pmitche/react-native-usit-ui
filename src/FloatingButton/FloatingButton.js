@@ -105,6 +105,7 @@ class FloatingButton extends Component<Props, State> {
       >
         {this.state.active && this.renderTappableBackground()}
         <View
+          pointerEvents="box-none"
           style={{
             position: 'absolute',
             bottom: marginBottom,
