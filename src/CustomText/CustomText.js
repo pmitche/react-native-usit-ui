@@ -21,13 +21,42 @@
 import * as React from 'react';
 import { Text as RNText } from 'react-native';
 
-const CustomText = (props: {
-  style?: *,
-  onPress?: () => void,
+// Flow-types from: https://github.com/facebook/react-native/blob/master/Libraries/Text/TextProps.js
+type PressRetentionOffset = {
+  top: number,
+  left: number,
+  bottom: number,
+  right: number,
+};
+
+type TextProps = {|
+  accessible?: boolean,
+  allowFontScaling?: boolean,
   children: React.Node,
-}) => {
-  const { style, ...restProps } = props;
-  return <RNText allowFontScaling={false} style={style} {...restProps} />;
+  ellipsizeMode?: 'clip' | 'head' | 'middle' | 'tail',
+  nativeID?: string,
+  numberOfLines?: number,
+  onLayout?: ?(event: Object) => void,
+  onLongPress?: ?() => void,
+  onPress?: ?() => void,
+  pressRetentionOffset?: PressRetentionOffset,
+  selectable?: boolean,
+  style?: any,
+  testID?: string,
+
+  // Android Only
+  disabled?: boolean,
+  selectionColor?: string,
+  textBreakStrategy?: 'balanced' | 'highQuality' | 'simple',
+
+  // iOS Only
+  adjustsFontSizeToFit?: boolean,
+  minimumFontScale?: number,
+  suppressHighlighting?: boolean,
+|};
+
+const CustomText = (props: TextProps) => {
+  return <RNText allowFontScaling={false} {...props} />;
 };
 
 export default CustomText;
