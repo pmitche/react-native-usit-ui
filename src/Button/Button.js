@@ -1,6 +1,7 @@
 // @flow
 import React from 'react';
-import { Dimensions, StyleSheet, Text, TouchableOpacity } from 'react-native';
+import { Dimensions, StyleSheet, TouchableOpacity } from 'react-native';
+import CustomText from '../CustomText';
 
 import { colors, constants } from '../styles';
 
@@ -57,7 +58,7 @@ class Button extends React.Component<Props> {
           StyleSheet.flatten(style),
         ]}
       >
-        <Text
+        <CustomText
           style={[
             {
               color: disabled
@@ -70,7 +71,7 @@ class Button extends React.Component<Props> {
           ]}
         >
           {text}
-        </Text>
+        </CustomText>
       </TouchableOpacity>
     );
   }

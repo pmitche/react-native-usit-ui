@@ -4,10 +4,10 @@ import {
   View,
   Animated,
   Dimensions,
-  Text,
   StyleSheet,
   TouchableOpacity,
 } from 'react-native';
+import CustomText from '../CustomText';
 
 import { colors } from '../styles';
 
@@ -120,7 +120,9 @@ class FloatingButton extends Component<Props, State> {
             }}
           >
             <View style={[styles.cardTitle, { backgroundColor: color }]}>
-              <Text style={{ color: colors.white, fontSize: 18 }}>{title}</Text>
+              <CustomText style={{ color: colors.white, fontSize: 18 }}>
+                {title}
+              </CustomText>
             </View>
             <View style={styles.cardContent}>{this.props.children}</View>
           </Animated.View>

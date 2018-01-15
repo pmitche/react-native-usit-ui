@@ -7,6 +7,7 @@ import {
   StyleSheet,
   TouchableOpacity,
 } from 'react-native';
+import CustomText from '../CustomText';
 
 import { colors, constants } from '../styles';
 
@@ -64,20 +65,22 @@ class ListElement extends React.Component<Props> {
             {selected ? icons.checked(color) : icons.unchecked(color)}
           </View>
           <View style={styles.text}>
-            <Text
+            <CustomText
               style={{
                 fontSize: midValue * 36,
               }}
             >
               {item.text}
-            </Text>
+            </CustomText>
           </View>
         </View>
         {item.subText && (
           <View style={{ flexDirection: 'row', marginBottom: 18 }}>
             <View style={{ flex: 0.157 }} />
             <View style={{ flex: 0.83 }}>
-              <Text style={{ fontSize: midValue * 27 }}>{item.subText}</Text>
+              <CustomText style={{ fontSize: midValue * 27 }}>
+                {item.subText}
+              </CustomText>
             </View>
           </View>
         )}

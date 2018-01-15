@@ -1,7 +1,8 @@
 // @flow
 import React from 'react';
-import { Image, Text, View, TouchableOpacity, Modal } from 'react-native';
+import { Image, View, TouchableOpacity, Modal } from 'react-native';
 import { Banner } from '../svg-icons';
+import CustomText from '../CustomText';
 
 import { colors, constants } from '../styles';
 
@@ -101,16 +102,16 @@ class AchievementModal extends React.Component<Props> {
               }}
             >
               {icon}
-              <Text
+              <CustomText
                 style={{
                   fontWeight: 'bold',
                   fontSize: 18,
                 }}
               >
                 {title}
-              </Text>
+              </CustomText>
 
-              <Text
+              <CustomText
                 style={{
                   width: 200,
                   marginBottom: 10,
@@ -118,7 +119,7 @@ class AchievementModal extends React.Component<Props> {
                 }}
               >
                 {description}
-              </Text>
+              </CustomText>
             </View>
             <TouchableOpacity
               onPress={() => onClose()}
@@ -128,9 +129,9 @@ class AchievementModal extends React.Component<Props> {
                 alignItems: 'center',
               }}
             >
-              <Text style={{ color: closeTextColor, fontSize: 16 }}>
+              <CustomText style={{ color: closeTextColor, fontSize: 16 }}>
                 {closeText}
-              </Text>
+              </CustomText>
             </TouchableOpacity>
           </View>
         </View>
