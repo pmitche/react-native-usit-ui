@@ -1,13 +1,8 @@
 // @flow
 import React from 'react';
-import {
-  View,
-  Dimensions,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-} from 'react-native';
+import { View, Dimensions, StyleSheet, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import CustomText from '../CustomText';
 import { colors, constants } from '../styles';
 
 const { width } = Dimensions.get('window');
@@ -83,7 +78,7 @@ class MenuButton extends React.Component<Props> {
             )}
           </View>
           <View style={setElementsHorizontal ? styles.rowText : undefined}>
-            <Text
+            <CustomText
               style={[
                 {
                   color: disabled
@@ -96,7 +91,7 @@ class MenuButton extends React.Component<Props> {
               ]}
             >
               {text}
-            </Text>
+            </CustomText>
           </View>
         </View>
       </TouchableOpacity>

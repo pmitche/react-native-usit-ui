@@ -4,12 +4,12 @@ import {
   Dimensions,
   StyleSheet,
   LayoutAnimation,
-  Text,
   TouchableOpacity,
   View,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import Divider from '../Divider';
+import CustomText from '../CustomText';
 
 import { colors } from '../styles';
 
@@ -65,9 +65,11 @@ class Accordion extends Component<AccordionProps, AccordionState> {
           style={{ flexDirection: 'row', justifyContent: 'space-between' }}
         >
           <View style={{ justifyContent: 'center' }}>
-            <Text style={[{ fontSize: 25 }, StyleSheet.flatten(titleStyle)]}>
+            <CustomText
+              style={[{ fontSize: 25 }, StyleSheet.flatten(titleStyle)]}
+            >
               {title}
-            </Text>
+            </CustomText>
           </View>
           <View style={styles.icon}>
             <Icon
@@ -80,9 +82,11 @@ class Accordion extends Component<AccordionProps, AccordionState> {
           </View>
         </TouchableOpacity>
         {this.state.active && (
-          <Text style={[{ fontSize: 15 }, StyleSheet.flatten(contentStyle)]}>
+          <CustomText
+            style={[{ fontSize: 15 }, StyleSheet.flatten(contentStyle)]}
+          >
             {content}
-          </Text>
+          </CustomText>
         )}
         <Divider />
       </View>

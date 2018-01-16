@@ -1,6 +1,7 @@
 // @flow
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
+import CustomText from '../CustomText';
 
 const StepperValue = ({ value, color }: { value: number, color: string }) => (
   <View
@@ -13,7 +14,7 @@ const StepperValue = ({ value, color }: { value: number, color: string }) => (
       borderColor: color,
     }}
   >
-    <Text style={{ fontSize: 19, fontWeight: '300' }}>{value}</Text>
+    <CustomText style={{ fontSize: 19, fontWeight: '300' }}>{value}</CustomText>
   </View>
 );
 

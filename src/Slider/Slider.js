@@ -1,7 +1,14 @@
 // @flow
 
 import React from 'react';
-import { PanResponder, StyleSheet, Text, View, Dimensions } from 'react-native';
+import {
+  PanResponder,
+  StyleSheet,
+  View,
+  Dimensions,
+  LayoutAnimation,
+} from 'react-native';
+import CustomText from '../CustomText';
 
 const { width } = Dimensions.get('window');
 
@@ -104,6 +111,10 @@ class Slider extends React.Component<SliderProps, SliderState> {
 
   componentDidMount() {
     setTimeout(this.measureHelper);
+  }
+
+  componentWillUpdate() {
+    LayoutAnimation.easeInEaseOut();
   }
 
   measureHelper = () => {
@@ -359,9 +370,9 @@ const SliderLabels = ({
       }}
     >
       {labels.map((label, i) => (
-        <Text style={{ textAlign: 'center' }} key={i}>
+        <CustomText style={{ textAlign: 'center' }} key={i}>
           {label}
-        </Text>
+        </CustomText>
       ))}
     </View>
   </View>
