@@ -8,11 +8,12 @@
 ```js
 ...
 import { View } from 'react-native';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 import { MenuButton } from 'react-native-usit-ui';
 
 ...
   render() {
-    return
+    return (
       <View
         style={{
           flex: 1,
@@ -32,6 +33,7 @@ import { MenuButton } from 'react-native-usit-ui';
           />
         </View>
       </View>
+    );
   }
 ```
 
