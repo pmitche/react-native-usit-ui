@@ -24,6 +24,7 @@ export type ListItem = {
 type Props = {
   item: ListItem,
   selected: boolean,
+  disabled: boolean,
   onPress: () => void,
   icons: {
     checked: (color: string) => React.Component<*>,
@@ -35,23 +36,28 @@ type Props = {
 class ListElement extends React.Component<Props> {
   static defaultProps = {
     color: colors.primary,
+    disabled: false,
     onPress: () => {},
   };
 
   shouldComponentUpdate(nextProps: Props) {
-    return this.props.selected !== nextProps.selected;
+    return (
+      this.props.selected !== nextProps.selected ||
+      this.props.disabled !== nextProps.disabled
+    );
   }
 
   render() {
-    const { color, item, icons, selected, onPress } = this.props;
+    const { color, item, icons, selected, onPress, disabled } = this.props;
     // The color design of the rows is based on opacity, so HEX values is used
     const selectedColor = color && `${color}33`;
     const unselectedColor = color && `${color}10`;
+    const iconColor = disabled ? `${color}60` : color;
 
     return (
       <TouchableOpacity
         activeOpacity={constants.activeOpacity}
-        onPress={() => onPress()}
+        onPress={() => !disabled && onPress()}
         style={[
           styles.row,
           {
@@ -62,7 +68,7 @@ class ListElement extends React.Component<Props> {
       >
         <View style={{ flexDirection: 'row' }}>
           <View style={styles.iconContainer}>
-            {selected ? icons.checked(color) : icons.unchecked(color)}
+            {selected ? icons.checked(iconColor) : icons.unchecked(iconColor)}
           </View>
           <View style={styles.text}>
             <CustomText

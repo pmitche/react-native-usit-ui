@@ -8,6 +8,7 @@ import type { ListItem } from '../ListElement/ListElement';
 
 type Props = {
   items: Array<ListItem>,
+  maxOptions: ?number,
   onChange: (result: Array<string | number>) => void,
   color?: string,
   icons?: {
@@ -22,6 +23,7 @@ type State = {
 
 class MultipleOptionList extends React.Component<Props, State> {
   static defaultProps = {
+    maxOptions: undefined,
     icons: {
       checked: (color: string) => ImageIcon(color, 'checked'),
       unchecked: (color: string) => ImageIcon(color, 'unchecked'),
@@ -37,13 +39,19 @@ class MultipleOptionList extends React.Component<Props, State> {
   }
 
   onSelect(id: number | string) {
-    const updatedSelected = this.state.selected.includes(id)
+    const updatedSelected = this.isSelected(id)
       ? this.state.selected.filter(value => value !== id)
       : [...this.state.selected, id];
 
     this.setState({ selected: updatedSelected });
     this.props.onChange(updatedSelected);
   }
+
+  isMaxOptionsSelected = (): boolean =>
+    this.props.maxOptions === this.state.selected.length;
+
+  isSelected = (id: number | string): boolean =>
+    this.state.selected.includes(id);
 
   render() {
     const { color, icons, items } = this.props;
@@ -61,7 +69,10 @@ class MultipleOptionList extends React.Component<Props, State> {
             item={element}
             icons={icons}
             color={color}
-            selected={this.state.selected.includes(element.id)}
+            disabled={
+              this.isMaxOptionsSelected() && !this.isSelected(element.id)
+            }
+            selected={this.isSelected(element.id)}
             onPress={() => this.onSelect(element.id)}
           />
         ))}
