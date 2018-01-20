@@ -1,0 +1,18 @@
+{
+  "verbose": true,
+  "colours": true,
+  "stdout": true,
+  "ignore": [
+    "SampleApp",
+    "node_modules",
+    ".git"
+  ],
+  "watch": [
+    ".."
+  ],
+  "ext": "js json png jpeg jpg",
+  "events": {
+    "start": "mkdir -p node_modules/react-native-usit-ui && cp -rf ../{src,flow-typed,*.js,*.json} node_modules/react-native-usit-ui/",
+    "restart": "cp -rf ../{src,*.js,*.json} node_modules/react-native-usit-ui/"
+  }
+}
