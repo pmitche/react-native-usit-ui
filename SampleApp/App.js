@@ -5,6 +5,7 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
+  SafeAreaView,
   ScrollView,
   View,
 } from 'react-native';
@@ -93,7 +94,9 @@ export default class App extends Component<Props, State> {
           style={{ flex: 1 }}
           contentContainerStyle={styles.container}
         >
-          <Text style={styles.header}>USIT's mobile components</Text>
+          <SafeAreaView>
+            <Text style={styles.header}>USIT's mobile components</Text>
+          </SafeAreaView>
 
           <TouchableOpacity onPress={this.toggleAccordion}>
             <Text style={styles.item}>Accordion</Text>
