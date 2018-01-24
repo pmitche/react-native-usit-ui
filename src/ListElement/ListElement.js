@@ -61,7 +61,6 @@ class ListElement extends React.Component<Props> {
         style={[
           styles.row,
           {
-            height: item.subText ? undefined : rowHeight,
             backgroundColor: selected ? selectedColor : unselectedColor,
           },
         ]}
@@ -108,9 +107,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   text: {
-    height: rowHeight,
+    marginTop: 14,
     width: width * 0.75,
-    justifyContent: 'center',
+    marginBottom: 15,
   },
 });
 
