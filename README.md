@@ -3,7 +3,7 @@
 ![npm version](https://badge.fury.io/js/react-native-usit-ui.svg)
 
 **React Native components created by USIT (University Center for Information
-Techonology) - University in Oslo**
+Technology) - University in Oslo**
 
 # Getting Started
 
