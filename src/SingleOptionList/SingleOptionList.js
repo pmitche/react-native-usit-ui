@@ -2,7 +2,7 @@
 import React from 'react';
 import { View, Image, ScrollView } from 'react-native';
 import ListElement from '../ListElement';
-import { midValue } from '../styles/constants';
+import { RadioChecked, RadioUnchecked } from '../svg-icons';
 
 import type { ListItem } from '../ListElement/ListElement';
 
@@ -21,12 +21,22 @@ type States = {
   selected: ?(number | string),
 };
 
+const defaultIcons = {
+  checked: (color: string) => (
+    <View style={{ backgroundColor: 'white', borderRadius: 11 }}>
+      <RadioChecked color={color} />
+    </View>
+  ),
+  unchecked: (color: string) => (
+    <View style={{ backgroundColor: 'white', borderRadius: 11 }}>
+      <RadioUnchecked color={color} />
+    </View>
+  ),
+};
+
 class SingleOptionList extends React.Component<Props, States> {
   static defaultProps = {
-    icons: {
-      checked: (color: string) => ImageIcon(color, 'checked'),
-      unchecked: (color: string) => ImageIcon(color, 'unchecked'),
-    },
+    icons: defaultIcons,
     onChange: () => {},
   };
 
@@ -67,22 +77,5 @@ class SingleOptionList extends React.Component<Props, States> {
     );
   }
 }
-
-const ImageIcon = (color: string, type: 'checked' | 'unchecked') => (
-  <View style={{ borderRadius: midValue * 36 / 2, backgroundColor: 'white' }}>
-    <Image
-      source={
-        type === 'checked'
-          ? require('./radiochecked.png')
-          : require('./radiounchecked.png')
-      }
-      style={{
-        height: midValue * 36,
-        width: midValue * 36,
-        tintColor: color,
-      }}
-    />
-  </View>
-);
 
 export default SingleOptionList;
