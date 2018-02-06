@@ -27,19 +27,17 @@ const data = [
   { id: 'g', text: 'Venus' },
 ];
 
-const icons = {
+const defaultIcons = {
   // Icons from react-native-vector-icons could also be used in the same pattern
-  checked: (
-    <Image
-      source={require('./checkedbox.png')}
-      style={{ height: 20, width: 20 }}
-    />
+  checked: (color: string) => (
+    <View style={{ backgroundColor: 'white', borderRadius: 11 }}>
+      <CheckedBox color={color} />
+    </View>
   ),
-  unchecked: (
-    <Image
-      source={require('./uncheckedbox.png')}
-      style={{ height: 20, width: 20 }}
-    />
+  unchecked: (color: string) => (
+    <View style={{ backgroundColor: 'white', borderRadius: 11 }}>
+      <UncheckedBox color={color} />
+    </View>
   ),
 };
 ...
@@ -56,7 +54,7 @@ const icons = {
         <MultipleOptionList
           items={data}
           color="#f4414d" // Note that HEX value is required, due to opacity design
-          icons={icons} // If not specified, default icons are used
+          icons={defaultIcons} // If not specified, default icons are used
           onChange={result => console.log(result)}
         />
       </ScrollView>
@@ -66,33 +64,15 @@ const icons = {
 
 ### API
 
-| Prop       | Default                                                                                                                    |                                                 Type                                                  | Description                                                                   |
-| :--------- | :------------------------------------------------------------------------------------------------------------------------- | :---------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------- |
-| items      | `null`                                                                                                                     |                                           `Array<ListItem>`                                           | Data element to be inserted                                                   |
-| maxOptions | `undefined`                                                                                                                |                                               `number`                                                | Max number of options that can be selected, `undefined` means no limit        |
-| onChange   | `() => {}`                                                                                                                 |                               `(result: Array<string⎮number>) => void`                                | Callback with result whenever you clock on a listelement                      |
-| color      | `#2294A8`                                                                                                                  |                                               `string`                                                | Color of the button                                                           |
-| icons      | `{ checked: (color: string) => ImageIcon(color, 'checked'), unchecked: (color: string) => ImageIcon(color, 'unchecked') }` | `{ checked: (color: string) => React.Component<*>, unchecked:(color: string) => React.Component<*> }` | Icons should be added as an object. Can be react-native-vector-icons or Image |
+| Prop       | Default        |                                                 Type                                                  | Description                                                                   |
+| :--------- | :------------- | :---------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------- |
+| items      | `null`         |                                           `Array<ListItem>`                                           | Data element to be inserted                                                   |
+| maxOptions | `undefined`    |                                               `number`                                                | Max number of options that can be selected, `undefined` means no limit        |
+| onChange   | `() => {}`     |                               `(result: Array<string⎮number>) => void`                                | Callback with result whenever you clock on a listelement                      |
+| color      | `#2294A8`      |                                               `string`                                                | Color of the button                                                           |
+| icons      | `defaultIcons` | `{ checked: (color: string) => React.Component<*>, unchecked:(color: string) => React.Component<*> }` | Icons should be added as an object. Can be react-native-vector-icons or Image |
 
 ```js
-const ImageIcon = (color: string, type: 'checked' | 'unchecked') => (
-  <View style={{ borderRadius: 5, backgroundColor: 'white' }}>
-    <Image
-      source={
-        type === 'checked'
-          ? require('./checkedbox.png')
-          : require('./uncheckedbox.png')
-      }
-      style={{
-        height: midValue * 36,
-        width: midValue * 36,
-        // TODO: MOB-1236 fix checkbox icon
-        tintColor: type === 'checked' ? undefined : color,
-      }}
-    />
-  </View>
-);
-
 type ListItem = {
   id: string,
   text: string,

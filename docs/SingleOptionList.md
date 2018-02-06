@@ -27,19 +27,17 @@ const data = [
   { id: 'g', text: 'Venus' },
 ];
 
-const icons = {
+const defaultIcons = {
   // Icons from react-native-vector-icons could also be used in the same pattern
-  checked: (
-    <Image
-      source={require('./checkedbox.png')}
-      style={{ height: 20, width: 20 }}
-    />
+  checked: (color: string) => (
+    <View style={{ backgroundColor: 'white', borderRadius: 11 }}>
+      <RadioChecked color={color} />
+    </View>
   ),
-  unchecked: (
-    <Image
-      source={require('./uncheckedbox.png')}
-      style={{ height: 20, width: 20 }}
-    />
+  unchecked: (color: string) => (
+    <View style={{ backgroundColor: 'white', borderRadius: 11 }}>
+      <RadioUnchecked color={color} />
+    </View>
   ),
 };
 ...
@@ -56,7 +54,7 @@ const icons = {
         <SingleOptionList
           items={data}
           color="#f4414d" // Note that HEX value is required, due to opacity design
-          icons={icons} // If not specified, default icons are used
+          icons={defaultIcons} // If not specified, default icons are used
           defaultSelected="c"
           onChange={result => console.log(result)}
         />
@@ -67,31 +65,14 @@ const icons = {
 
 ### API
 
-| Prop     | Default                                                                                                                |                                                 Type                                                  | Description                                                                   |
-| :------- | :--------------------------------------------------------------------------------------------------------------------- | :---------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------- |
-| items    | `null`                                                                                                                 |                                           `Array<ListItem>`                                           | Data element to be inserted                                                   |
-| onChange | `() => {}`                                                                                                             |                               `(result: Array<string⎮number>) => void`                                | Callback with result whenever you clock on a listelement                      |
-| color    | `#2294A8`                                                                                                              |                                               `string`                                                | Color of the button                                                           |
-| icons    | `{ checked: (color: string) => ImageIcon(color, checked), unchecked: (color: string) => ImageIcon(color, unchecked) }` | `{ checked: (color: string) => React.Component<_>, unchecked:(color: string) => React.Component<_> }` | Icons should be added as an object. Can be react-native-vector-icons or Image |
+| Prop     | Default        |                                                 Type                                                  | Description                                                                   |
+| :------- | :------------- | :---------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------- |
+| items    | `null`         |                                           `Array<ListItem>`                                           | Data element to be inserted                                                   |
+| onChange | `() => {}`     |                               `(result: Array<string⎮number>) => void`                                | Callback with result whenever you clock on a listelement                      |
+| color    | `#2294A8`      |                                               `string`                                                | Color of the button                                                           |
+| icons    | `defaultIcons` | `{ checked: (color: string) => React.Component<_>, unchecked:(color: string) => React.Component<_> }` | Icons should be added as an object. Can be react-native-vector-icons or Image |
 
 ```js
-const ImageIcon = (color: string, type: 'checked' | 'unchecked') => (
-  <View style={{ borderRadius: midValue * 36 / 2, backgroundColor: 'white' }}>
-    <Image
-      source={
-        type === 'checked'
-          ? require('./radiochecked.png')
-          : require('./radiounchecked.png')
-      }
-      style={{
-        height: midValue * 36,
-        width: midValue * 36,
-        tintColor: color,
-      }}
-    />
-  </View>
-);
-
 type ListItem = {
   id: string,
   text: string,

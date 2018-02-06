@@ -2,9 +2,22 @@
 import React from 'react';
 import { View, Image, ScrollView } from 'react-native';
 import ListElement from '../ListElement';
-import { midValue } from '../styles/constants';
+import { CheckedBox, UncheckedBox } from '../svg-icons';
 
 import type { ListItem } from '../ListElement/ListElement';
+
+const defaultIcons = {
+  checked: (color: string) => (
+    <View style={{ backgroundColor: 'white', borderRadius: 11 }}>
+      <CheckedBox color={color} />
+    </View>
+  ),
+  unchecked: (color: string) => (
+    <View style={{ backgroundColor: 'white', borderRadius: 11 }}>
+      <UncheckedBox color={color} />
+    </View>
+  ),
+};
 
 type Props = {
   items: Array<ListItem>,
@@ -24,10 +37,7 @@ type State = {
 class MultipleOptionList extends React.Component<Props, State> {
   static defaultProps = {
     maxOptions: undefined,
-    icons: {
-      checked: (color: string) => ImageIcon(color, 'checked'),
-      unchecked: (color: string) => ImageIcon(color, 'unchecked'),
-    },
+    icons: defaultIcons,
     onChange: () => {},
   };
 
@@ -80,22 +90,5 @@ class MultipleOptionList extends React.Component<Props, State> {
     );
   }
 }
-
-const ImageIcon = (color: string, type: 'checked' | 'unchecked') => (
-  <View style={{ borderRadius: 5, backgroundColor: 'white' }}>
-    <Image
-      source={
-        type === 'checked'
-          ? require('./checkedbox.png')
-          : require('./uncheckedbox.png')
-      }
-      style={{
-        height: midValue * 36,
-        width: midValue * 36,
-        tintColor: color,
-      }}
-    />
-  </View>
-);
 
 export default MultipleOptionList;
