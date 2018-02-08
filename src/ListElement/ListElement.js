@@ -28,7 +28,7 @@ type Props = {
   onPress: () => void,
   icons: {
     checked: (color: string) => React.Component<*>,
-    unchecked: (color: string) => React.Component<*>,
+    unchecked: (color: string, disabled: boolean) => React.Component<*>,
   },
   color: string,
 };
@@ -52,7 +52,6 @@ class ListElement extends React.Component<Props> {
     // The color design of the rows is based on opacity, so HEX values is used
     const selectedColor = color && `${color}33`;
     const unselectedColor = color && `${color}10`;
-    const iconColor = disabled ? `${color}60` : color;
 
     return (
       <TouchableOpacity
@@ -67,7 +66,7 @@ class ListElement extends React.Component<Props> {
       >
         <View style={{ flexDirection: 'row' }}>
           <View style={styles.iconContainer}>
-            {selected ? icons.checked(iconColor) : icons.unchecked(iconColor)}
+            {selected ? icons.checked(color) : icons.unchecked(color, disabled)}
           </View>
           <View style={styles.text}>
             <CustomText
