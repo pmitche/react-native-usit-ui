@@ -12,9 +12,9 @@ const defaultIcons = {
       <CheckedBox color={color} />
     </View>
   ),
-  unchecked: (color: string) => (
+  unchecked: (color: string, disabled: boolean) => (
     <View style={{ backgroundColor: 'white', borderRadius: 11 }}>
-      <UncheckedBox color={color} />
+      <UncheckedBox color={color} disabled={disabled} />
     </View>
   ),
 };
