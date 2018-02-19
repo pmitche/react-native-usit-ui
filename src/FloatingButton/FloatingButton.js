@@ -101,7 +101,13 @@ class FloatingButton extends Component<Props, State> {
     return (
       <Animated.View
         pointerEvents="box-none"
-        style={[styles.overlay, { backgroundColor: 'transparent' }]}
+        style={{
+          position: 'absolute',
+          height,
+          width,
+          bottom: 0,
+          backgroundColor: 'transparent',
+        }}
       >
         {this.state.active && this.renderTappableBackground()}
         <View
