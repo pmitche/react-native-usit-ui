@@ -10,3 +10,4 @@ export { default as Slider } from './Slider';
 export { default as Accordion } from './Accordion';
 export { default as FloatingButton } from './FloatingButton';
 export { default as AchievementModal } from './AchievementModal';
+export { default as CircularTimeSlider } from './CircularTimeSlider';
