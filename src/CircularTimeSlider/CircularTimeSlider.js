@@ -103,22 +103,27 @@ class CircularSlider extends React.Component<
         } = this.state;
 
         if (circleCenterX && circleCenterY) {
-          const x = moveX - circleCenterX;
           let newAngle =
             Math.atan2(moveY - circleCenterY, moveX - circleCenterX) +
             Math.PI / 2;
 
+          /* At newAngle [3/2*Math.PI, 2*Math.PI] you get negative values
+            * so to counteract this we multiply add it with 2*Math.PI
+            * subtract 0.05 to skip the value indicating 2PI, because we
+            * dont want to display 60minute but rather 0minute 
+          */
           if (newAngle < 0) {
             newAngle += 2 * Math.PI - 0.05;
           }
 
           const currentQuarter: Quarters = determineQuarter(newAngle);
+          const validMovement = validateRotation(
+            rotations,
+            quarter,
+            currentQuarter,
+          );
 
-          if (
-            rotations > 0 ||
-            !(quarter === 'FIRST' && currentQuarter === 'FOURTH') ||
-            quarter === currentQuarter
-          ) {
+          if (validMovement) {
             this.setState({
               angleLengthInRadian: newAngle,
               quarter: currentQuarter,
@@ -276,6 +281,24 @@ class CircularSlider extends React.Component<
       </Svg>
     );
   }
+}
+
+function validateRotation(
+  rotations: number,
+  quarter: Quarters,
+  currentQuarter: Quarters,
+) {
+  const hasPassedFirstRotation = rotations > 0;
+  const nextPositionIsNotFourthQuarter = !(
+    quarter === 'FIRST' && currentQuarter === 'FOURTH'
+  );
+  const positionIsInTheSameQuarter = quarter === currentQuarter;
+
+  return (
+    hasPassedFirstRotation ||
+    nextPositionIsNotFourthQuarter ||
+    positionIsInTheSameQuarter
+  );
 }
 
 function getGradientId(index) {
