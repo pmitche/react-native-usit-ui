@@ -35,6 +35,9 @@ import { CircularTimeSlider } from 'react-native-usit-ui';
 | segments          | `10`       |         `number`          | SVG doesn't support canonical gradients, so it's imitated by using multiple linear gradients across the slider. In most cases 5 should be fine. |
 | radius            | `120`      |         `number`          | Size of whole slider                                                                                                                            |
 | strokeWidth       | `25`       |         `number`          | Width of slider                                                                                                                                 |
+| buttonColor       | `#FFFFFF`  |         `string`          | Background color of button                                                                                                                      |
+| buttonBorderColor | `#197AA3`  |         `string`          | Color of the border of the button                                                                                                               |
+| buttonBorderWidth | `"4"`      |         `string`          | With of the border of the button. MUST be in string since its SVG                                                                               |
 | gradientColorFrom | `#3023AE`  |         `string`          | Initial gradient color of slider                                                                                                                |
 | gradientColorTo   | `#8f42f4`  |         `string`          | Final gradient color of slider                                                                                                                  |
 | bgCircleColor     | `#E9F2F5`  |         `string`          | Color of the circle under the slider (pathway for a slider)                                                                                     |

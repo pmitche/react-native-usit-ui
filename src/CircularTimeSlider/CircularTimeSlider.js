@@ -44,6 +44,9 @@ type CircularSliderProps = {
   segments: number,
   radius: number,
   strokeWidth: number,
+  buttonColor: string,
+  buttonBorderColor: string,
+  buttonBorderWidth: string,
   gradientColorFrom: string,
   gradientColorTo: string,
   bgCircleColor: string,
@@ -71,6 +74,9 @@ class CircularSlider extends React.Component<
     segments: 10,
     radius: 120,
     strokeWidth: 25,
+    buttonColor: 'white',
+    buttonBorderWidth: '4',
+    buttonBorderColor: '#197AA3',
     gradientColorFrom: '#3023AE',
     gradientColorTo: '#8f42f4',
     bgCircleColor: '#E9F2F5',
@@ -157,6 +163,9 @@ class CircularSlider extends React.Component<
       segments,
       strokeWidth,
       radius,
+      buttonColor,
+      buttonBorderColor,
+      buttonBorderWidth,
       gradientColorFrom,
       gradientColorTo,
       bgCircleColor,
@@ -177,7 +186,7 @@ class CircularSlider extends React.Component<
     onValueChange(Math.round(convertToMinute + INTERVAL * rotations));
     return (
       <Svg
-        viewBox={`0 -15 ${containerWidth} ${containerWidth + 25}`}
+        viewBox={`0 -15 ${containerWidth} ${containerWidth + 30}`}
         height={containerWidth}
         width={containerWidth}
         ref={circle => (this.circle = circle)}
@@ -272,9 +281,9 @@ class CircularSlider extends React.Component<
           >
             <Circle
               r={strokeWidth * 0.9}
-              fill="white"
-              stroke="#197AA3"
-              strokeWidth="3"
+              fill={buttonColor}
+              stroke={buttonBorderColor}
+              strokeWidth={buttonBorderWidth}
             />
           </G>
         </G>
