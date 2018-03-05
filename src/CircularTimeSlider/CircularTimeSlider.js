@@ -231,11 +231,11 @@ class CircularSlider extends React.Component<
             stroke={bgCircleColor}
           />
 
-          <Text fontSize="40" textAnchor="middle" y="-40">
+          <Text fontSize="50" textAnchor="middle" fontWeight="300" y="-50">
             {rotations ? `${rotations}${hourUnit} ` : undefined}
             {convertToMinute.toFixed(0)}
           </Text>
-          <Text fontSize="30" textAnchor="middle" y="20">
+          <Text fontSize="30" textAnchor="middle" fontWeight="300" y="10">
             {minuteUnit}
           </Text>
 
