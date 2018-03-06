@@ -51,6 +51,7 @@ type CircularSliderProps = {
   gradientColorTo: string,
   bgCircleColor: string,
   onValueChange: (value: number) => void,
+  onRelease?: (value: number) => void,
 };
 
 type CircularSliderState = {
@@ -98,6 +99,14 @@ class CircularSlider extends React.Component<
     this.butonPanResponder = PanResponder.create({
       onMoveShouldSetPanResponder: (evt, gestureState) => true,
       onMoveShouldSetPanResponderCapture: (evt, gestureState) => true,
+      onPanResponderRelease: () => {
+        const { convertToMinute, totalMinutes } = calculateTotalMinutes(
+          this.state.angleLengthInRadian,
+          this.state.rotations,
+        );
+
+        this.props.onRelease && this.props.onRelease(totalMinutes);
+      },
       onPanResponderGrant: (evt, gestureState) => this.setCircleCenter(),
       onPanResponderMove: (evt, { moveX, moveY }) => {
         const {
@@ -174,7 +183,6 @@ class CircularSlider extends React.Component<
 
     const { angleLengthInRadian, rotations } = this.state;
 
-    const convertToMinute = angleLengthInRadian * (INTERVAL / (2 * Math.PI));
     const containerWidth = this.getContainerWidth();
     const stopButtonPosition = calculateArcCircle(
       segments - 1,
@@ -183,7 +191,12 @@ class CircularSlider extends React.Component<
       angleLengthInRadian,
     );
 
-    onValueChange(Math.round(convertToMinute + INTERVAL * rotations));
+    const { convertToMinute, totalMinutes } = calculateTotalMinutes(
+      angleLengthInRadian,
+      rotations,
+    );
+    onValueChange(totalMinutes);
+
     return (
       <Svg
         viewBox={`0 -15 ${containerWidth} ${containerWidth + 30}`}
@@ -290,6 +303,12 @@ class CircularSlider extends React.Component<
       </Svg>
     );
   }
+}
+
+function calculateTotalMinutes(angleLength: number, rotations: number) {
+  const convertToMinute = angleLength * (INTERVAL / (2 * Math.PI));
+  const totalMinutes = Math.round(convertToMinute + INTERVAL * rotations);
+  return { convertToMinute, totalMinutes };
 }
 
 function validateRotation(
