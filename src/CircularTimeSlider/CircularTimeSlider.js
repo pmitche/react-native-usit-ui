@@ -67,7 +67,7 @@ class CircularSlider extends React.Component<
   CircularSliderState,
 > {
   circle: any;
-  butonPanResponder: any;
+  buttonPanResponder: any;
 
   static defaultProps = {
     hourUnit: 't',
@@ -96,7 +96,7 @@ class CircularSlider extends React.Component<
   }
 
   componentWillMount() {
-    this.butonPanResponder = PanResponder.create({
+    this.buttonPanResponder = PanResponder.create({
       onMoveShouldSetPanResponder: (evt, gestureState) => true,
       onMoveShouldSetPanResponderCapture: (evt, gestureState) => true,
       onPanResponderRelease: () => {
@@ -290,7 +290,7 @@ class CircularSlider extends React.Component<
             transform={{
               translate: `${stopButtonPosition.toX}, ${stopButtonPosition.toY}`,
             }}
-            {...this.butonPanResponder.panHandlers}
+            {...this.buttonPanResponder.panHandlers}
           >
             <Circle
               r={strokeWidth * 0.9}

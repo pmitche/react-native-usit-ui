@@ -1,6 +1,6 @@
-# Accordion
+# CircularTimeSlider
 
-![Screenshot of accordion](./screenshots/circularTimeSlider.png)
+![Screenshot of circular time slider](./screenshots/circularTimeSlider.png)
 
 ### Usage
 
