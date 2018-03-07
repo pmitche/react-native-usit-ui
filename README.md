@@ -33,8 +33,8 @@ $ react-native link react-native-svg
 or follow the
 [official instructions](https://github.com/react-native-community/react-native-svg)
 
-Please notice that the correct react-native-svg version has to correspond to the
-react-native and react version.
+Please notice that the correct `react-native-svg` version has to correspond to the
+`react-native` and `react` version used in your project.
 
 # Components
 
