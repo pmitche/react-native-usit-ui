@@ -33,12 +33,12 @@ $ react-native link react-native-svg
 or follow the
 [official instructions](https://github.com/react-native-community/react-native-svg)
 
-Please notice that the correct react-native-svg version has to correspond to the
-react-native and react version.
+Please notice that the correct `react-native-svg` version has to correspond to the
+`react-native` and `react` version used in your project.
 
 # Components
 
-Here is a list of all component included in this library.
+Here is a list of all components included in this library:
 
 * [Button](./docs/Button.md)
 * [SingleOptionList](./docs/SingleOptionList.md)
@@ -51,3 +51,4 @@ Here is a list of all component included in this library.
 * [Accordion](./docs/Accordion.md)
 * [FloatingButton](./docs/FloatingButton.md)
 * [AchievementModal](./docs/AchievementModal.md)
+* [CircularTimeSlider](./docs/CircularTimeSlider.md)
