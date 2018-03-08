@@ -1,6 +1,6 @@
 // @flow
 import React from 'react';
-import { View, Image, ScrollView } from 'react-native';
+import { View, ScrollView } from 'react-native';
 import ListElement from '../ListElement';
 import { CheckedBox, UncheckedBox } from '../svg-icons';
 
@@ -23,6 +23,7 @@ type Props = {
   items: Array<ListItem>,
   maxOptions: ?number,
   onChange: (result: Array<string | number>) => void,
+  onTextInputChange: string => void,
   color?: string,
   icons?: {
     checked: (color: string) => React.Component<*>,
@@ -39,6 +40,7 @@ class MultipleOptionList extends React.Component<Props, State> {
     maxOptions: undefined,
     icons: defaultIcons,
     onChange: () => {},
+    onTextInputChange: () => {},
   };
 
   constructor(props: Props) {
@@ -64,7 +66,7 @@ class MultipleOptionList extends React.Component<Props, State> {
     this.state.selected.includes(id);
 
   render() {
-    const { color, icons, items } = this.props;
+    const { color, icons, items, onTextInputChange } = this.props;
     return (
       <ScrollView
         style={{ flex: 1 }}
@@ -84,6 +86,7 @@ class MultipleOptionList extends React.Component<Props, State> {
             }
             selected={this.isSelected(element.id)}
             onPress={() => this.onSelect(element.id)}
+            onTextInputChange={onTextInputChange}
           />
         ))}
       </ScrollView>

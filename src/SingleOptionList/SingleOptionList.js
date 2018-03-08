@@ -1,6 +1,6 @@
 // @flow
 import React from 'react';
-import { View, Image, ScrollView } from 'react-native';
+import { View, ScrollView } from 'react-native';
 import ListElement from '../ListElement';
 import { RadioChecked, RadioUnchecked } from '../svg-icons';
 
@@ -9,6 +9,7 @@ import type { ListItem } from '../ListElement/ListElement';
 type Props = {
   items: Array<ListItem>,
   onChange: (id: number | string) => void,
+  onTextInputChange: string => void,
   color?: string,
   icons?: {
     checked: (color: string) => React.Component<*>,
@@ -38,6 +39,7 @@ class SingleOptionList extends React.Component<Props, States> {
   static defaultProps = {
     icons: defaultIcons,
     onChange: () => {},
+    onTextInputChange: () => {},
   };
 
   constructor(props: Props) {
@@ -53,7 +55,7 @@ class SingleOptionList extends React.Component<Props, States> {
   }
 
   render() {
-    const { color, icons, items } = this.props;
+    const { color, icons, items, onTextInputChange } = this.props;
 
     return (
       <ScrollView
@@ -71,6 +73,7 @@ class SingleOptionList extends React.Component<Props, States> {
             color={color}
             selected={this.state.selected === element.id}
             onPress={() => this.onSelect(element.id)}
+            onTextInputChange={onTextInputChange}
           />
         ))}
       </ScrollView>
