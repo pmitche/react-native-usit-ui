@@ -8,6 +8,7 @@ const data = [
   { id: 'a', text: 'Tellus' },
   { id: 'b', text: 'Mercury' },
   { id: 'c', text: 'Pluto' },
+  { id: 'cc', text: 'Pluto is not actually a planet in the solar system.' },
   { id: 'd', text: 'Uranus' },
   {
     id: 'e',
