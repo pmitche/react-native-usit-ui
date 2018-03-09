@@ -65,17 +65,20 @@ const defaultIcons = {
 
 ### API
 
-| Prop     | Default        |                                                 Type                                                  | Description                                                                   |
-| :------- | :------------- | :---------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------- |
-| items    | `null`         |                                           `Array<ListItem>`                                           | Data element to be inserted                                                   |
-| onChange | `() => {}`     |                               `(result: Array<string⎮number>) => void`                                | Callback with result whenever you clock on a listelement                      |
-| color    | `#2294A8`      |                                               `string`                                                | Color of the button                                                           |
-| icons    | `defaultIcons` | `{ checked: (color: string) => React.Component<_>, unchecked:(color: string) => React.Component<_> }` | Icons should be added as an object. Can be react-native-vector-icons or Image |
+| Prop              | Default        |                                                 Type                                                  | Description                                                                   |
+| :---------------- | :------------- | :---------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------- |
+| items             | `null`         |                                           `Array<ListItem>`                                           | Data element to be inserted                                                   |
+| onChange          | `() => {}`     |                               `(result: Array<string⎮number>) => void`                                | Callback with result whenever you click on a list element                     |
+| onTextInputChange | `() => {}`     |                                       `(input: string) => void`                                       | Callback with input when this element is listed with `textInput={true}`       |
+| color             | `#2294A8`      |                                               `string`                                                | Color of the button                                                           |
+| icons             | `defaultIcons` | `{ checked: (color: string) => React.Component<_>, unchecked:(color: string) => React.Component<_> }` | Icons should be added as an object. Can be react-native-vector-icons or Image |
 
 ```js
 type ListItem = {
   id: string,
   text: string,
   subText?: string,
+  textInput?: boolean, // Only one element may have this set to true
+  inputPlaceholder?: string,
 };
 ```
