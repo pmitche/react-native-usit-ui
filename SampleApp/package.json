@@ -9,8 +9,8 @@
     "nodemon": "nodemon nodemon.json"
   },
   "dependencies": {
-    "react": "16.2.0",
-    "react-native": "0.52.0",
+    "react": "^16.3.0-alpha.1",
+    "react-native": "0.54.0",
     "react-native-svg": "6.0.0",
     "react-native-usit-ui": "file:../",
     "react-native-vector-icons": "^4.5.0"
