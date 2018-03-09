@@ -1,4 +1,4 @@
-# Button
+# Stepper
 
 ![Screenshot of stepper](./screenshots/stepper.png)
 
@@ -30,12 +30,12 @@ import { Stepper } from 'react-native-usit-ui';
 
 ### API
 
-| Prop             | Default            |     Type     | Description                                                                           |
-| :--------------- | :----------------- | :----------: | :------------------------------------------------------------------------------------ |
-| interval         | `0.5`              |   `number`   | The interval value to increase/decrease for each press on button                      |
-| longHoldInterval | `2`                |   `number`   | When holding for more than approx. 2 sec the interval increase with a different value |
-| minValue         | `0`                |   `number`   | Min limit for value                                                                   |
-| maxValue         | `Number.MAX_VALUE` |   `number`   | Max limit for value                                                                   |
-| onChange         | `() => {}`         | `() => void` | Callback when value changes                                                           |
-| color            | `#2294A8`          |   `string`   | Color of the stepper                                                                  |
-| initialValue     | `0`                |   `number`   | Initial value to be shown in stepper                                                  |
+| Prop             | Default            |           Type            | Description                                                                           |
+| :--------------- | :----------------- | :-----------------------: | :------------------------------------------------------------------------------------ |
+| interval         | `0.5`              |         `number`          | The interval value to increase/decrease for each press on button                      |
+| longHoldInterval | `2`                |         `number`          | When holding for more than approx. 2 sec the interval increase with a different value |
+| minValue         | `0`                |         `number`          | Min limit for value                                                                   |
+| maxValue         | `Number.MAX_VALUE` |         `number`          | Max limit for value                                                                   |
+| onChange         | `() => {}`         | `(value: number) => void` | Callback when value changes                                                           |
+| color            | `#2294A8`          |         `string`          | Color of the stepper                                                                  |
+| initialValue     | `0`                |         `number`          | Initial value to be shown in stepper                                                  |
