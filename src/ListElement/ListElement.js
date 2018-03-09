@@ -124,7 +124,6 @@ const styles = StyleSheet.create({
     borderRadius: constants.borderRadius,
   },
   iconContainer: {
-    height: rowHeight,
     width: width * 0.14,
     justifyContent: 'center',
     alignItems: 'center',
