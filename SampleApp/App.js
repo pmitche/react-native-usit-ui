@@ -20,6 +20,7 @@ import MultipleOptionExample from './src/MultipleOptionList';
 import SingleOptionExample from './src/SingleOptionList';
 import SliderExample from './src/Slider';
 import StepperExample from './src/Stepper';
+import GradientBackgroundExample from './src/GradientBackground';
 
 type Props = {};
 type State = {
@@ -33,6 +34,7 @@ type State = {
   showSingleOption: boolean,
   showSlider: boolean,
   showStepper: boolean,
+  showGradientBackground: boolean,
 };
 
 const initState: State = {
@@ -46,6 +48,7 @@ const initState: State = {
   showSingleOption: false,
   showSlider: false,
   showStepper: false,
+  showGradientBackground: false,
 };
 
 export default class App extends Component<Props, State> {
@@ -86,6 +89,8 @@ export default class App extends Component<Props, State> {
     this.setState({ ...initState, showSlider: !this.state.showSlider });
   toggleStepper = () =>
     this.setState({ ...initState, showStepper: !this.state.showStepper });
+  toggleGradientBackground = () => 
+    this.setState({ ...initState, showGradientBackground: !this.state.showGradientBackground });
 
   render() {
     return (
@@ -95,7 +100,7 @@ export default class App extends Component<Props, State> {
           contentContainerStyle={styles.container}
         >
           <SafeAreaView>
-            <Text style={styles.header}>USIT's mobile components</Text>
+            <Text style={styles.header}>USITs mobile components</Text>
           </SafeAreaView>
 
           <TouchableOpacity onPress={this.toggleAccordion}>
@@ -145,6 +150,12 @@ export default class App extends Component<Props, State> {
             <Text style={styles.item}>Stepper</Text>
           </TouchableOpacity>
           {this.state.showStepper && <StepperExample />}
+          
+          <TouchableOpacity onPress={this.toggleGradientBackground}>
+            <Text style={styles.item}>GradientBackground</Text>
+          </TouchableOpacity>
+          {this.state.showGradientBackground && <GradientBackgroundExample />}
+          
         </ScrollView>
         {this.state.showFloatingButton && <FloatingButtonExample />}
         {this.state.showAchievementModal && (
