@@ -50,5 +50,4 @@ log.android
 webpack-assets.json
 *report*
 
-yarn.lock
 package-lock.json
