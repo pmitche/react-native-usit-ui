@@ -1,1 +1,1 @@
-export { default } from './CircularTimeSlider';
+export { default } from './GradientBackground';
