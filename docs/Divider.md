@@ -41,6 +41,10 @@ type Props = {
   style?: Object,
 };
 
+defaultProps = {
+  size: '90%',
+}
+
 default style = {
   width: vertical ? 1.5 : size,
   height: vertical ? size : 1.5,
