@@ -27,11 +27,11 @@ import { GradientBackground, Button } from 'react-native-usit-ui';
 
 ### API
 
-| Prop                  | Default                                                                           |         Type         | Description                                                                            |
-| :-------------------- | :-------------------------------------------------------------------------------- | :------------------: | :------------------------------------------------------------------------------------- |
-| fromColor                  | `#b8cef2`                                                                   |       `string`       | start color of gradient                                                                         |
-| toColor               | `#40a4f9`                                                                        |     `string`     | end color of gradient                                                 |
-| direction                 | `topToBottom`                                                                         |       `GradientDirection`       | direction of the gradient                                                          |
+| Prop      | Default       |        Type         | Description               |
+| :-------- | :------------ | :-----------------: | :------------------------ |
+| fromColor | `#b8cef2`     |      `string`       | start color of gradient   |
+| toColor   | `#40a4f9`     |      `string`       | end color of gradient     |
+| direction | `topToBottom` | `GradientDirection` | direction of the gradient |
 
 ```js
 type GradientDirection = 'leftToRight' | 'topToBottom';
