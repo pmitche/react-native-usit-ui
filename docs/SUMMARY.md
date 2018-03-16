@@ -14,3 +14,4 @@
   * [FloatingButton](FloatingButton.md)
   * [AchievementModal](AchievementModal.md)
   * [CircularTimeSlider](CircularTimeSlider.md)
+  * [GradientBackground](GradientBackground.md)
