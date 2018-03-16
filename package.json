@@ -38,12 +38,18 @@
     "react": "16.0.0-beta.5",
     "react-native": "^0.49.5"
   },
-  "keywords": [
-    "ui",
-    "react-native",
-    "usit",
-    "design"
-  ],
+  "lint-staged": {
+    "*.{js,json,css}": [
+      "prettier --single-quote true --trailing-comma all --parser flow --write",
+      "git add"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "keywords": ["ui", "react-native", "usit", "design"],
   "author": "USIT",
   "license": "MIT"
 }
