@@ -8,7 +8,7 @@
 ...
 import { View } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import { MenuButton } from 'react-native-usit-ui';
+import { GradientBackground, Button } from 'react-native-usit-ui';
 
 ...
   render() {
