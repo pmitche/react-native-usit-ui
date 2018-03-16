@@ -57,44 +57,71 @@ export default class App extends Component<Props, State> {
     this.state = initState;
   }
 
+  statePreserveGradient = () => ({
+    ...initState,
+    showGradientBackground: this.state.showGradientBackground,
+  });
+
   toggleAccordion = () =>
-    this.setState({ ...initState, showAccordion: !this.state.showAccordion });
+    this.setState({
+      ...this.statePreserveGradient(),
+      showAccordion: !this.state.showAccordion,
+    });
   toggleAchievementModal = () =>
     this.setState({
-      ...initState,
+      ...this.statePreserveGradient(),
       showAchievementModal: !this.state.showAchievementModal,
     });
   toggleButton = () =>
-    this.setState({ ...initState, showButton: !this.state.showButton });
+    this.setState({
+      ...this.statePreserveGradient(),
+      showButton: !this.state.showButton,
+    });
   toggleDivider = () =>
-    this.setState({ ...initState, showDivider: !this.state.showDivider });
+    this.setState({
+      ...this.statePreserveGradient(),
+      showDivider: !this.state.showDivider,
+    });
   toggleFloatingButton = () =>
     this.setState({
-      ...initState,
+      ...this.statePreserveGradient(),
       showFloatingButton: !this.state.showFloatingButton,
     });
   toggleMenuButton = () =>
-    this.setState({ ...initState, showMenuButton: !this.state.showMenuButton });
+    this.setState({
+      ...this.statePreserveGradient(),
+      showMenuButton: !this.state.showMenuButton,
+    });
   toggleMultipleOption = () =>
     this.setState({
-      ...initState,
+      ...this.statePreserveGradient(),
       showMultipleOption: !this.state.showMultipleOption,
     });
   toggleSingleOption = () =>
     this.setState({
-      ...initState,
+      ...this.statePreserveGradient(),
       showSingleOption: !this.state.showSingleOption,
     });
   toggleSlider = () =>
-    this.setState({ ...initState, showSlider: !this.state.showSlider });
+    this.setState({
+      ...this.statePreserveGradient(),
+      showSlider: !this.state.showSlider,
+    });
   toggleStepper = () =>
-    this.setState({ ...initState, showStepper: !this.state.showStepper });
-  toggleGradientBackground = () => 
-    this.setState({ ...initState, showGradientBackground: !this.state.showGradientBackground });
+    this.setState({
+      ...this.statePreserveGradient(),
+      showStepper: !this.state.showStepper,
+    });
+  toggleGradientBackground = () =>
+    this.setState({
+      ...this.statePreserveGradient(),
+      showGradientBackground: !this.state.showGradientBackground,
+    });
 
   render() {
     return (
       <View style={styles.outerContainer}>
+        {this.state.showGradientBackground && <GradientBackgroundExample />}
         <ScrollView
           style={{ flex: 1 }}
           contentContainerStyle={styles.container}
@@ -150,12 +177,10 @@ export default class App extends Component<Props, State> {
             <Text style={styles.item}>Stepper</Text>
           </TouchableOpacity>
           {this.state.showStepper && <StepperExample />}
-          
+
           <TouchableOpacity onPress={this.toggleGradientBackground}>
             <Text style={styles.item}>GradientBackground</Text>
           </TouchableOpacity>
-          {this.state.showGradientBackground && <GradientBackgroundExample />}
-          
         </ScrollView>
         {this.state.showFloatingButton && <FloatingButtonExample />}
         {this.state.showAchievementModal && (
