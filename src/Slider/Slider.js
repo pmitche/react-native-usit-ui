@@ -13,6 +13,7 @@ import CustomText from '../CustomText';
 const { width } = Dimensions.get('window');
 
 type SliderProps = {
+  animate: number,
   size: number,
   min: number,
   max: number,
@@ -45,6 +46,7 @@ type SyntheticTouchEventLike = {
 
 class Slider extends React.Component<SliderProps, SliderState> {
   static defaultProps = {
+    animate: true,
     onValueChange: () => {},
     size: width * 0.9,
     min: 0,
@@ -114,7 +116,7 @@ class Slider extends React.Component<SliderProps, SliderState> {
   }
 
   componentWillUpdate() {
-    LayoutAnimation.easeInEaseOut();
+    this.props.animate && LayoutAnimation.easeInEaseOut();
   }
 
   measureHelper = () => {
