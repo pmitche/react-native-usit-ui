@@ -1,22 +1,20 @@
 // @flow
 import React from 'react';
-import { StyleSheet, View, Dimensions } from 'react-native';
-
-const { width } = Dimensions.get('window');
+import { StyleSheet, View } from 'react-native';
 
 type Props = {
   vertical?: boolean,
-  height?: number | string,
+  size?: number | string,
   style?: Object,
 };
 
-const Divider = ({ vertical, height, style }: Props) => {
+const Divider = ({ vertical, size, style }: Props) => {
   return (
     <View
       style={[
         {
-          width: vertical ? 1.5 : width * 0.9,
-          height: vertical ? height : 1.5,
+          width: vertical ? 1.5 : size,
+          height: vertical ? size : 1.5,
           marginVertical: vertical ? 0 : 15,
           marginHorizontal: vertical ? 15 : 0,
           backgroundColor: '#B6B6B6',
@@ -28,7 +26,7 @@ const Divider = ({ vertical, height, style }: Props) => {
 };
 
 Divider.defaultProps = {
-  height: '100%',
+  size: '90%',
 };
 
 export default Divider;
