@@ -7,8 +7,8 @@ import { Svg, LinearGradient, Defs, Stop, Rect } from 'react-native-svg';
 type GradientDirection = 'leftToRight' | 'topToBottom';
 
 type Props = {
-  fromColor: string,
-  toColor: string,
+  fromColor?: string,
+  toColor?: string,
   direction?: GradientDirection,
 };
 
@@ -31,6 +31,8 @@ const GradientBackground = ({ fromColor, toColor, direction }: Props) => (
 );
 
 GradientBackground.defaultProps = {
+  fromColor: "#b8cef2",
+  toColor: "#40a4f9",
   direction: 'topToBottom',
 };
 
