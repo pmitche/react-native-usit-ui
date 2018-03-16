@@ -16,6 +16,13 @@ class SliderExample extends React.Component<{}> {
       >
         <Slider max={10} />
         <Slider max={5} color="red" labels={['Bad', 'Good']} />
+        <Slider max={100} color="red" labels={['Bad', 'Good']} />
+        <Slider
+          max={100}
+          animate={false}
+          color="red"
+          labels={['Bad', 'Good']}
+        />
         <Slider size={200} vertical />
         <View style={{ height: 50 }} />
       </View>
