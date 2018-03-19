@@ -1,6 +1,7 @@
 // @flow
 
 import * as React from 'react';
+import { View } from 'react-native'
 import { Divider, Button } from 'react-native-usit-ui';
 
 class DividerExample extends React.Component<{}> {
@@ -9,8 +10,11 @@ class DividerExample extends React.Component<{}> {
       <React.Fragment>
         <Button />
         <Divider />
-        <Button />
-        <Divider />
+        <View style={{ flexDirection: 'row' }}>
+          <Button />
+          <Divider vertical />
+          <Button />
+        </View>
       </React.Fragment>
     );
   }

@@ -22,8 +22,11 @@ import { Divider, Button } from 'react-native-usit-ui';
         <Title />
         <Button />
         <Divider />
-        <Button />
-        <Divider />
+        <View style={{ flexDirection: 'row' }}>
+          <Button />
+          <Divider vertical />
+          <Button />
+        </View>
       </View>
     )
   }
@@ -33,13 +36,20 @@ import { Divider, Button } from 'react-native-usit-ui';
 
 ```js
 type Props = {
+  vertical? boolean,
+  size?: number | string,
   style?: Object,
 };
 
+defaultProps = {
+  size: '90%',
+}
+
 default style = {
-  width: width * 0.9,
-  height: 1.5,
-  marginVertical: 15,
+  width: vertical ? 1.5 : size,
+  height: vertical ? size : 1.5,
+  marginVertical: vertical ? 0 : 15,
+  marginHorizontal: vertical ? 15 : 0,
   backgroundColor: '#B6B6B6',
 }
 ```
