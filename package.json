@@ -39,11 +39,11 @@
     "react-native": "^0.49.5"
   },
   "lint-staged": {
-    "*.{js,json,css}[package.json]": [
+    "*.{js,css}[package.json]": [
       "prettier --single-quote true --trailing-comma all --parser flow --write",
       "git add"
     ],
-    "package.json": ["prettier --write", "git add"]
+    "*.json": ["prettier --write", "git add"]
   },
   "husky": {
     "hooks": {
